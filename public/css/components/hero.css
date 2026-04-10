@@ -149,6 +149,8 @@
 
 @media (min-width: 1024px) {
   .hero__content {
+    text-align: center;
+    align-items: center;
     max-width: none;
     padding-inline: clamp(var(--space-xl), 5vw, 6rem);
   }
