@@ -102,15 +102,73 @@
 .hero__ctas {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-md);
   align-items: center;
-  margin-top: var(--space-lg);
+  margin-top: var(--space-xl);
   width: 100%;
-  max-width: 20rem;
+  max-width: 22rem;
 }
 
 .hero__ctas .btn {
   width: 100%;
+  position: relative;
+  font-size: var(--font-size-xl);
+  padding: 1rem 2.25rem;
+  letter-spacing: 0.08em;
+  border-radius: 3px;
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out,
+    background-color 200ms ease-out, color 200ms ease-out,
+    border-color 200ms ease-out;
+}
+
+/* --- Primary CTA - "See our work" ---
+   Solid green, glowing, slightly cocked like a slapped-on sticker. */
+.hero__ctas .btn--primary {
+  transform: rotate(-1.5deg);
+  box-shadow: 0 0 16px rgba(46, 204, 64, 0.3), 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.hero__ctas .btn--primary:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 0 28px rgba(46, 204, 64, 0.5), 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero__ctas .btn--primary:active {
+  transform: rotate(0deg) scale(0.97);
+  box-shadow: 0 0 10px rgba(46, 204, 64, 0.3), 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Rough-edge pseudo-element - adds a torn/sticker border feel */
+.hero__ctas .btn--primary::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 2px solid rgba(46, 204, 64, 0.25);
+  border-radius: 4px;
+  pointer-events: none;
+  transform: rotate(1deg);
+  transition: opacity 200ms ease-out;
+}
+
+.hero__ctas .btn--primary:hover::before {
+  opacity: 0;
+}
+
+/* --- Ghost CTA - "Get a quote" ---
+   Outlined, tilted the opposite way, confident but secondary. */
+.hero__ctas .btn--ghost {
+  transform: rotate(1deg);
+  border-width: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero__ctas .btn--ghost:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 0 20px rgba(46, 204, 64, 0.35), 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.hero__ctas .btn--ghost:active {
+  transform: rotate(0deg) scale(0.97);
 }
 
 @media (min-width: 600px) {
@@ -119,24 +177,58 @@
     flex-wrap: wrap;
     justify-content: center;
     max-width: none;
+    gap: var(--space-lg);
   }
 
   .hero__ctas .btn {
     width: auto;
+    padding: 1.15rem 2.75rem;
+    font-size: 1.65rem;
   }
 }
 
-/* --- Toggle button (basic positioning - refined in TASK-009) --- */
+/* --- Toggle button (basic positioning - refined in TASK-009) ---
+   Stays muted and flat - an aside, not a CTA. */
 .hero .toggle__btn {
   margin-top: var(--space-lg);
   max-width: 20rem;
   width: 100%;
+  font-size: var(--font-size-base);
+  padding: 0.6rem 1.25rem;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+  border-width: 1px;
+  border-color: var(--color-border);
+  color: var(--color-muted);
+  transition: opacity 200ms ease-out, border-color 200ms ease-out,
+    color 200ms ease-out;
+}
+
+.hero .toggle__btn:hover {
+  opacity: 1;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background-color: transparent;
 }
 
 @media (min-width: 600px) {
   .hero .toggle__btn {
     width: auto;
     max-width: none;
+  }
+}
+
+/* --- Reduced motion: kill transforms and glows --- */
+@media (prefers-reduced-motion: reduce) {
+  .hero__ctas .btn {
+    transform: none !important;
+    box-shadow: none !important;
+    transition: background-color 200ms ease-out, color 200ms ease-out,
+      border-color 200ms ease-out;
+  }
+
+  .hero__ctas .btn--primary::before {
+    display: none;
   }
 }
 
@@ -149,10 +241,14 @@
 
 @media (min-width: 1024px) {
   .hero__content {
-    text-align: center;
-    align-items: center;
+    text-align: left;
+    align-items: flex-start;
     max-width: none;
     padding-inline: clamp(var(--space-xl), 5vw, 6rem);
+  }
+
+  .hero__ctas {
+    align-self: center;
   }
 
   .hero__headline {
