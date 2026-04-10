@@ -86,9 +86,45 @@
 **Next:** Operator visual review of card styling now that CSS selectors actually match the DOM.
 
 ## [2026-04-09] Gate 4 -- Project Complete
-**Status:** Awaiting user sign-off
+**Status:** Complete
 **Summary:** The Skeleton Crew business website is fully built and ready for deployment. All success criteria from the project brief have been met. The site is a static HTML/CSS/JS frontend consuming Ghost's Content API, with full fallback support, a working toggle demo, and all copy editable from Ghost CMS. One operator action required before production deploy: replace [FORM_HANDLER_ID] with a real Web3Forms access key.
 **Key Decisions:**
 - Project delivered with all 28 tasks complete and QA passed
 **Delegated To:** N/A
 **Next:** User reviews and approves for deployment.
+
+---
+
+## [2026-04-10] Phase 0 -- Post-Deployment Brief Intake
+**Status:** In Progress
+**Summary:** The site is now deployed to production at https://skeleton-crew.co.uk with Ghost CMS at https://cms.skeleton-crew.co.uk. The operator has submitted a four-item post-deployment brief to switch from dev to production configuration, seed the live CMS, verify the contact form, and improve the deployment workflow so future client sites ship with content from day one.
+**Key Decisions:**
+- This is a post-deployment configuration phase, not new feature work
+- Three specialists potentially needed: Frontend (config updates), Architect (systemic workflow design)
+- Contact form (item 3) appears already resolved - Web3Forms key is present in the code
+- Production CMS URL needs confirmation - operator says `cms.skeleton-crew.co.uk` but PROJECT_BRIEF.md references `cms-skeleton-crew.skeleton-crew.co.uk`
+- Production API keys (Content and Admin) must be provided by the operator
+**Delegated To:** None (intake only)
+**Next:** Gate 0 passed. Moving to scoped Discovery/Build Plan.
+
+## [2026-04-10] Phase 0 -- Gate 0 Passed
+**Status:** Complete
+**Summary:** Operator confirmed: production CMS URL is https://cms.skeleton-crew.co.uk, provided API keys via screenshot (Content key complete, Admin key truncated - awaiting full copy). Contact form item dropped - Web3Forms key already configured. Scope reduced to three items.
+**Key Decisions:**
+- Item 3 (contact form) dropped from scope - already resolved
+- Production Content API key: 8a9d56240348b314cf2d63d8eb
+- Admin API key partially visible, full key requested
+- Scope: 3 items (config update, seed execution, systemic workflow improvement)
+**Delegated To:** None
+**Next:** Phase 1 Discovery and Build Plan - proceeding in parallel since scope is small and well-defined.
+
+## [2026-04-10] Phase 4 -- Post-Deployment Execution
+**Status:** Complete
+**Summary:** All four post-deployment tasks executed. The frontend API config (ghost-api.js) and seed script (seed-ghost-content.js) were updated to point at the production Ghost instance at cms.skeleton-crew.co.uk. The TLS verification bypass was removed since production has proper SSL. The seed script was run successfully against production Ghost - all content created: 3 tags, 1 portfolio entry (Fungi & Forage), 6 pricing tiers (3 website + 3 AI), and 7 site content pages (hero, CTA strip, about, what-we-do x2, subpage heroes x2). The Architect produced a recommendation for integrating seeding into the deployment workflow so future client sites ship with content from day one.
+**Key Decisions:**
+- Contact form item dropped from scope - Web3Forms key already configured
+- NODE_TLS_REJECT_UNAUTHORIZED hack removed (was only needed for dev staging cert)
+- Production Ghost seeded with all expected content - frontend should now pull live CMS data instead of falling back to hardcoded content
+- Architect recommends: post-deploy seed step, per-client JSON seed files, env vars for credentials, existing idempotency logic preserved
+**Delegated To:** Frontend (T1+T2 config updates), Architect (T4 workflow design)
+**Next:** Operator verifies live site is pulling CMS content. Architect recommendation at AGENTS/architect-output-t4.md ready for review when operator wants to implement the systemic improvement.

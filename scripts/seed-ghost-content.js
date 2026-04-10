@@ -9,14 +9,11 @@
  * Requires Node 18+.
  */
 
-// Dev environment uses a staging SSL certificate - allow self-signed certs
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-
 const crypto = require('crypto');
 
 // --- Config ---
-const API_URL = 'https://cms-skeleton-crew.dev.skeleton-crew.co.uk';
-const ADMIN_KEY = '69d7d6005a7f310001fd4208:6e92b7e884de7cc51910bc24f3f513dc657ce04f5e9dc5dbfa680b0e37b9d8b2';
+const API_URL = 'https://cms.skeleton-crew.co.uk';
+const ADMIN_KEY = '69d92c27ff2ddb0001320a9d:abdf01c530077568b3573248afd5d27a39b03055727118634e1e58f60b20b968';
 
 // --- JWT helpers ---
 

@@ -13,8 +13,8 @@ import {
 
 // --- Config ---
 
-const API_BASE = 'https://cms-skeleton-crew.dev.skeleton-crew.co.uk/ghost/api/content';
-const API_KEY = '6a81932590f32d95416a5191a7';
+const API_BASE = 'https://cms.skeleton-crew.co.uk/ghost/api/content';
+const API_KEY = '8a9d56240348b314cf2d63d8eb';
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 const FETCH_TIMEOUT = 5000; // 5 seconds
 
