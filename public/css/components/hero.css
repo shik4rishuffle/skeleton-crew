@@ -149,8 +149,6 @@
 
 @media (min-width: 1024px) {
   .hero__content {
-    text-align: left;
-    align-items: flex-start;
     max-width: none;
     padding-inline: clamp(var(--space-xl), 5vw, 6rem);
   }
@@ -161,10 +159,6 @@
 
   .hero__sub {
     max-width: 50ch;
-  }
-
-  .hero__ctas {
-    justify-content: flex-start;
   }
 }
 
