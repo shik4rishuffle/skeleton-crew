@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260">
+<title>Skeleton Crew logo</title>
+<!-- Skeleton Character - tilted 7 degrees, positioned left -->
+<g fill="none" stroke="#f5f5f5" stroke-linecap="round" stroke-linejoin="round" transform="rotate(-7 120 130)">
+<!-- Cranium -->
+<path d="M64 48 C64 26 80 10 98 6 C108 3 116 2 120 2 C124 2 132 3 142 6 C160 10 176 26 176 48 L176 82 C176 90 174 100 168 108 C164 114 156 120 150 124 L150 132 C150 138 144 144 136 146 C132 148 126 150 120 150 C114 150 108 148 104 146 C96 144 90 138 90 132 L90 124 C84 120 76 114 72 108 C66 100 64 90 64 82 Z" stroke-width="5"/>
+<!-- Left eye socket -->
+<ellipse cx="100" cy="58" rx="16" ry="18" stroke-width="4"/>
+<!-- Right eye socket -->
+<ellipse cx="140" cy="58" rx="16" ry="18" stroke-width="4"/>
+<!-- Neon green eye dot -->
+<circle cx="100" cy="58" r="6" fill="#00FF41" stroke="none"/>
+<!-- Nose -->
+<path d="M116 90 L120 98 L124 90" stroke-width="3"/>
+<!-- Teeth -->
+<path d="M98 116 L142 116" stroke-width="2.5"/>
+<path d="M100 116 L100 126" stroke-width="2.5"/>
+<path d="M110 116 L110 128" stroke-width="2.5"/>
+<path d="M120 116 L120 126" stroke-width="2.5"/>
+<path d="M130 116 L130 128" stroke-width="2.5"/>
+<path d="M140 116 L140 126" stroke-width="2.5"/>
+<!-- Grin curve -->
+<path d="M98 126 C104 134 112 138 120 138 C128 138 136 134 142 126" stroke-width="2.5"/>
+<!-- Collar bones -->
+<path d="M92 160 L120 172" stroke-width="4"/>
+<path d="M148 160 L120 172" stroke-width="4"/>
+<!-- Ribs -->
+<path d="M88 184 C98 196 110 198 120 198 C130 198 142 196 152 184" stroke-width="3.5"/>
+<path d="M92 200 C100 210 110 214 120 214 C130 214 140 210 148 200" stroke-width="3"/>
+<path d="M96 216 C104 224 112 226 120 226 C128 226 136 224 144 216" stroke-width="2.5"/>
+<!-- Sternum -->
+<path d="M120 172 L120 226" stroke-width="2.5"/>
+</g>
+<!-- SKELETON - text right of character, first line -->
+<g fill="#f5f5f5">
+<!-- S -->
+<path d="M262 46 Q260 38 270 32 Q280 26 290 32 Q300 38 298 48 Q296 54 286 58 Q274 62 270 68 Q266 76 272 84 Q280 90 290 86 L292 78 Q284 82 278 78 Q272 72 276 66 Q282 58 292 54 Q304 50 304 40 Q304 30 294 24 Q282 18 270 24 Q258 30 258 42 Z"/>
+<!-- K -->
+<path d="M312 24 L312 90 L324 90 L324 62 L342 90 L358 90 L336 58 L356 24 L340 24 L324 52 L324 24 Z"/>
+<!-- E -->
+<path d="M366 24 L366 90 L400 90 L398 80 L378 80 L378 62 L394 62 L394 52 L378 52 L378 34 L398 34 L400 24 Z"/>
+<!-- L -->
+<path d="M408 24 L408 90 L440 90 L440 80 L420 80 L420 24 Z"/>
+<!-- E -->
+<path d="M448 24 L448 90 L482 90 L480 80 L460 80 L460 62 L476 62 L476 52 L460 52 L460 34 L480 34 L482 24 Z"/>
+<!-- T -->
+<path d="M490 24 L490 36 L506 36 L506 90 L518 90 L518 36 L534 36 L534 24 Z"/>
+<!-- O -->
+<path d="M550 34 Q540 42 540 58 Q540 74 550 82 Q558 88 568 88 Q578 88 586 82 Q596 74 596 58 Q596 42 586 34 Q578 28 568 28 Q558 28 550 34 Z M568 38 Q576 38 580 46 Q584 52 584 58 Q584 64 580 70 Q576 78 568 78 Q560 78 556 70 Q552 64 552 58 Q552 52 556 46 Q560 38 568 38 Z"/>
+<!-- N -->
+<path d="M608 24 L608 90 L620 90 L620 50 L646 90 L660 90 L660 24 L648 24 L648 64 L622 24 Z"/>
+</g>
+<!-- CREW - second line, slightly larger -->
+<g fill="#f5f5f5">
+<!-- C -->
+<path d="M268 132 Q258 142 256 158 Q254 176 264 188 Q272 196 284 196 Q294 196 304 188 L302 176 Q294 182 286 184 Q278 184 272 176 Q266 168 266 158 Q266 148 272 140 Q278 132 286 132 Q294 132 302 138 L304 126 Q294 118 284 118 Q272 118 268 132 Z"/>
+<!-- R -->
+<path d="M318 120 L318 196 L332 196 L332 166 L342 166 L358 196 L374 196 L356 164 Q366 158 366 146 Q366 132 356 126 Q348 120 340 120 Z M332 132 L340 132 Q348 132 352 138 Q354 142 352 148 Q350 154 342 156 L332 156 Z"/>
+<!-- E -->
+<path d="M384 120 L384 196 L422 196 L420 184 L398 184 L398 164 L416 164 L416 152 L398 152 L398 132 L420 132 L422 120 Z"/>
+<!-- W -->
+<path d="M434 120 L450 196 L462 196 L476 148 L490 196 L502 196 L520 120 L506 120 L496 172 L482 120 L470 120 L458 172 L448 120 Z"/>
+</g>
+<!-- Neon green accent slash under CREW -->
+<path d="M316 204 L524 204" stroke="#00FF41" stroke-width="3" stroke-linecap="round" fill="none"/>
+</svg>

@@ -1,0 +1,177 @@
+/* ==========================================================================
+   Hero Section - Skeleton Crew
+   ========================================================================== */
+
+/* --- Hero layout --- */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(28rem, 70vh, 50rem);
+  overflow: hidden;
+}
+
+/* --- Animated background ---
+   Overlapping radial gradients that slowly drift. Subtle enough to
+   feel alive without pulling focus from the content. */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(46, 204, 64, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 80% 60%, rgba(46, 204, 64, 0.03) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255, 255, 255, 0.01) 0%, transparent 60%);
+  animation: hero-bg-drift 20s ease-in-out infinite alternate;
+}
+
+@keyframes hero-bg-drift {
+  0% {
+    background-position: 0% 0%, 100% 100%, 50% 50%;
+    opacity: 0.6;
+  }
+  50% {
+    background-position: 30% 20%, 70% 80%, 40% 60%;
+    opacity: 1;
+  }
+  100% {
+    background-position: 10% 40%, 90% 30%, 60% 40%;
+    opacity: 0.7;
+  }
+}
+
+/* --- Short hero modifier ---
+   Used on subpages (Work, Services) where the hero is a compact
+   heading strip rather than the full-viewport homepage hero. */
+.hero--short {
+  min-height: auto;
+}
+
+.hero--short .hero__content {
+  padding-block: var(--space-xl);
+}
+
+.hero--short .hero__headline {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-2xl);
+}
+
+@media (min-width: 600px) {
+  .hero--short .hero__content {
+    padding-block: var(--space-2xl);
+  }
+
+  .hero--short .hero__headline {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+/* --- Hero content --- */
+.hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-block: var(--space-2xl);
+}
+
+/* --- Headline --- */
+.hero__headline {
+  font-family: var(--font-display);
+  font-size: var(--font-size-hero);
+  color: var(--color-text);
+  text-transform: uppercase;
+  line-height: 1.1;
+  max-width: 18ch;
+}
+
+/* --- Subheadline --- */
+.hero__sub {
+  font-family: var(--font-body);
+  font-size: var(--font-size-lg);
+  color: var(--color-muted);
+  max-width: 40ch;
+  margin-top: var(--space-md);
+  line-height: 1.6;
+}
+
+/* --- CTA buttons --- */
+.hero__ctas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  align-items: center;
+  margin-top: var(--space-lg);
+  width: 100%;
+  max-width: 20rem;
+}
+
+.hero__ctas .btn {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .hero__ctas {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: none;
+  }
+
+  .hero__ctas .btn {
+    width: auto;
+  }
+}
+
+/* --- Toggle button (basic positioning - refined in TASK-009) --- */
+.hero .toggle__btn {
+  margin-top: var(--space-lg);
+  max-width: 20rem;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .hero .toggle__btn {
+    width: auto;
+    max-width: none;
+  }
+}
+
+/* --- Responsive --- */
+@media (min-width: 600px) {
+  .hero__sub {
+    font-size: var(--font-size-xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__content {
+    text-align: left;
+    align-items: flex-start;
+    max-width: none;
+    padding-inline: clamp(var(--space-xl), 5vw, 6rem);
+  }
+
+  .hero__headline {
+    max-width: 20ch;
+  }
+
+  .hero__sub {
+    max-width: 50ch;
+  }
+
+  .hero__ctas {
+    justify-content: flex-start;
+  }
+}
+
+/* --- Reduced motion: disable background animation --- */
+@media (prefers-reduced-motion: reduce) {
+  .hero__bg {
+    animation: none;
+    opacity: 0.8;
+  }
+}

@@ -1,0 +1,49 @@
+/* ==========================================================================
+   What We Do Component
+   Two service cards - website builds and AI consulting.
+   ========================================================================== */
+
+.what-we-do__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+.what-we-do__card {
+  background-color: var(--color-surface);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  padding: var(--space-lg);
+  position: relative;
+}
+
+/* First card - accent left border */
+.what-we-do__card:first-child {
+  border-left: 3px solid var(--color-accent);
+}
+
+/* Second card - subtle top edge highlight */
+.what-we-do__card:last-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.what-we-do__title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-2xl);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-sm);
+}
+
+.what-we-do__body {
+  color: var(--color-muted);
+  font-family: var(--font-body);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+@media (min-width: 600px) {
+  .what-we-do__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

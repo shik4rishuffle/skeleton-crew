@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 560">
+<title>Skeleton Crew logo - Deck Graphic variant</title>
+<!-- Variant B: Deck Graphic
+     Concept: Classic skate deck / biker patch badge. Skull with upper torso dominant.
+     "SKELETON" arcs above, "CREW" arcs below. Oval badge shape with broken edges.
+     More detailed skull with collar bones, ribs, diagonal crack across cranium.
+     80s/90s deck typography - bold, condensed, aggressive. -->
+
+<defs>
+  <!-- Arc path for SKELETON text above -->
+  <path id="arc-top" d="M68 240 C68 120 170 32 250 32 C330 32 432 120 432 240" fill="none"/>
+  <!-- Arc path for CREW text below -->
+  <path id="arc-bottom" d="M120 400 C120 440 170 490 250 490 C330 490 380 440 380 400" fill="none"/>
+</defs>
+
+<!-- Outer badge border - broken/rough oval -->
+<path d="M250 10 C140 10 52 80 42 190 C42 198 40 206 41 214 C38 240 36 266 38 290 C42 340 58 380 90 420 C122 458 168 486 220 498 C234 502 248 504 250 504 C252 504 266 502 280 498 C332 486 378 458 410 420 C442 380 458 340 462 290 C464 266 462 240 459 214 C460 206 458 198 458 190 C448 80 360 10 250 10 Z" fill="none" stroke="#f5f5f5" stroke-width="5" stroke-linejoin="round"/>
+<!-- Inner badge line -->
+<path d="M250 26 C150 26 68 90 58 190 C56 216 54 242 56 268 C58 330 78 376 106 410 C134 444 174 470 222 482 C238 486 248 488 250 488 C252 488 262 486 278 482 C326 470 366 444 394 410 C422 376 442 330 444 268 C446 242 444 216 442 190 C432 90 350 26 250 26 Z" fill="none" stroke="#f5f5f5" stroke-width="2" stroke-dasharray="8 4"/>
+
+<!-- SKELETON arcing text - bold condensed uppercase, hand-drawn as paths -->
+<g fill="#f5f5f5">
+  <!-- S -->
+  <path d="M86 218 C82 204 90 190 104 186 C112 184 118 186 122 192 C126 198 124 206 118 212 L108 218 C102 222 100 228 104 234 C108 238 114 240 120 236 L124 228 C118 232 112 232 108 228 C104 224 106 218 112 214 L122 208 C130 202 132 192 128 184 C124 176 114 172 104 176 C90 180 80 194 82 212 Z"/>
+  <!-- K -->
+  <path d="M130 176 L130 240 L144 240 L144 214 L158 240 L176 240 L156 210 L174 176 L158 176 L144 204 L144 176 Z"/>
+  <!-- E -->
+  <path d="M182 172 L182 236 L214 236 L212 226 L196 226 L196 210 L210 210 L210 200 L196 200 L196 182 L212 182 L214 172 Z"/>
+  <!-- L -->
+  <path d="M222 166 L222 232 L252 232 L252 222 L236 222 L236 166 Z"/>
+  <!-- E -->
+  <path d="M258 164 L258 228 L290 228 L288 218 L272 218 L272 202 L286 202 L286 192 L272 192 L272 174 L288 174 L290 164 Z"/>
+  <!-- T -->
+  <path d="M296 164 L296 176 L310 176 L310 228 L324 228 L324 176 L338 176 L338 164 Z"/>
+  <!-- O -->
+  <path d="M350 176 C342 184 340 194 340 202 C340 210 342 220 350 228 C358 234 366 236 374 234 C382 232 390 224 394 216 C396 210 398 202 396 194 C394 186 390 178 382 174 C374 170 364 170 356 174 Z M374 182 C380 184 384 192 384 200 C384 208 380 218 374 222 C370 224 364 224 360 220 C354 216 352 208 352 200 C352 192 356 184 362 180 C366 178 370 178 374 182 Z"/>
+  <!-- N -->
+  <path d="M404 178 L404 240 L418 240 L418 206 L438 240 L454 240 L454 182 L440 182 L440 216 L420 182 Z"/>
+</g>
+
+<!-- Central skull with upper torso - dominant, aggressive, detailed -->
+<g fill="#f5f5f5">
+  <!-- Cranium - wide, heavy, with diagonal crack -->
+  <path d="M176 160 C172 130 192 106 218 98 C232 92 246 90 250 90 C254 90 268 92 282 98 C308 106 328 130 324 160 L322 214 C320 228 314 240 304 250 C296 258 286 264 278 268 L278 282 C278 290 268 298 256 300 C252 302 250 302 250 302 C250 302 248 302 244 300 C232 298 222 290 222 282 L222 268 C214 264 204 258 196 250 C186 240 180 228 178 214 Z"/>
+  <!-- Diagonal crack across cranium -->
+  <path d="M206 108 L218 128 L212 138 L228 158 L222 168 L238 188" stroke="#0a0a0a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Left eye socket - deep, angular -->
+  <path d="M206 162 C202 154 206 142 218 138 C226 136 234 140 236 148 C238 156 234 168 226 172 C218 174 210 170 206 162 Z" fill="#0a0a0a"/>
+  <!-- Right eye socket - slightly different shape for asymmetry -->
+  <path d="M268 158 C266 148 270 138 280 136 C290 134 298 140 300 150 C302 160 296 172 286 174 C276 176 270 168 268 158 Z" fill="#0a0a0a"/>
+  <!-- Neon green eye - LARGER with concentric glow rings -->
+  <circle cx="284" cy="156" r="14" fill="#00FF41" opacity="0.15"/>
+  <circle cx="284" cy="156" r="10" fill="#00FF41" opacity="0.3"/>
+  <circle cx="284" cy="156" r="7" fill="#00FF41"/>
+  <!-- Nose - deep angular cavity -->
+  <path d="M240 196 L250 216 L260 196 Z" fill="#0a0a0a"/>
+  <!-- Teeth - wide aggressive grin, uneven -->
+  <path d="M214 234 L286 232" stroke="#0a0a0a" stroke-width="3" fill="none"/>
+  <rect x="218" y="234" width="10" height="20" rx="1" fill="#0a0a0a"/>
+  <rect x="232" y="233" width="11" height="24" rx="1" fill="#0a0a0a"/>
+  <rect x="247" y="233" width="10" height="18" rx="1" fill="#0a0a0a"/>
+  <!-- Cracked tooth -->
+  <path d="M261 233 L261 255 L266 248 L269 257 L274 233 Z" fill="#0a0a0a"/>
+  <rect x="278" y="232" width="10" height="22" rx="1" fill="#0a0a0a"/>
+  <!-- Grin curve - wide, menacing -->
+  <path d="M210 254 C222 278 244 288 254 286 C264 284 280 272 292 250" stroke="#0a0a0a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- Collar bones - heavy, confident strokes -->
+  <path d="M196 310 L248 330" stroke="#f5f5f5" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M304 310 L252 330" stroke="#f5f5f5" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <!-- Ribs - curved, varying weight -->
+  <path d="M188 346 C208 368 232 374 250 374 C268 374 292 368 312 346" stroke="#f5f5f5" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M194 366 C212 386 236 392 250 392 C264 392 288 386 306 366" stroke="#f5f5f5" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M200 384 C216 400 238 406 250 406 C262 406 284 400 300 384" stroke="#f5f5f5" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- Sternum -->
+  <path d="M250 330 L250 406" stroke="#f5f5f5" stroke-width="4" fill="none" stroke-linecap="round"/>
+</g>
+
+<!-- CREW arcing text below - bold, condensed, marker-style -->
+<g fill="#f5f5f5">
+  <!-- C -->
+  <path d="M162 412 C152 422 148 436 150 450 C152 462 160 472 172 476 C180 478 186 478 192 474 L190 464 C186 468 180 468 174 466 C166 462 162 454 162 446 C162 438 166 430 174 426 C180 424 186 424 192 428 L194 418 C186 414 178 412 170 414 Z"/>
+  <!-- R -->
+  <path d="M204 416 L204 480 L218 480 L218 456 L228 456 L246 480 L264 480 L242 454 C252 450 258 442 256 432 C254 422 246 416 234 416 Z M218 428 L232 428 C238 428 242 432 242 438 C242 444 238 448 232 448 L218 448 Z"/>
+  <!-- E -->
+  <path d="M272 420 L272 484 L306 484 L304 474 L286 474 L286 458 L302 458 L302 448 L286 448 L286 432 L304 432 L306 420 Z"/>
+  <!-- W -->
+  <path d="M316 424 L330 488 L344 488 L356 448 L368 488 L382 488 L398 424 L384 424 L374 472 L362 424 L350 424 L340 472 L330 424 Z"/>
+</g>
+
+<!-- Small neon accent dots at badge edges -->
+<circle cx="250" cy="18" r="4" fill="#00FF41"/>
+<circle cx="250" cy="498" r="4" fill="#00FF41"/>
+</svg>

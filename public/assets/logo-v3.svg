@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -12 640 112">
+<title>Skeleton Crew logo</title>
+<!-- Variant C: Tag Style - text-dominant, skull integrated between words -->
+<!-- SKELETON text -->
+<g fill="#f5f5f5">
+<!-- S -->
+<path d="M14 24 Q12 16 22 10 Q32 4 42 10 Q52 16 50 26 Q48 32 38 36 Q26 40 22 46 Q18 54 24 62 Q32 68 42 64 L44 56 Q36 60 30 56 Q24 50 28 44 Q34 36 44 32 Q56 28 56 18 Q56 8 46 4 Q34 -2 22 4 Q10 10 10 22 Z"/>
+<!-- K -->
+<path d="M62 4 L62 68 L74 68 L74 40 L92 68 L108 68 L86 38 L106 4 L90 4 L74 32 L74 4 Z"/>
+<!-- E -->
+<path d="M114 4 L114 68 L148 68 L146 58 L126 58 L126 40 L142 40 L142 30 L126 30 L126 14 L146 14 L148 4 Z"/>
+<!-- L -->
+<path d="M156 4 L156 68 L188 68 L188 58 L168 58 L168 4 Z"/>
+<!-- E -->
+<path d="M194 4 L194 68 L228 68 L226 58 L206 58 L206 40 L222 40 L222 30 L206 30 L206 14 L226 14 L228 4 Z"/>
+<!-- T -->
+<path d="M234 4 L234 16 L250 16 L250 68 L262 68 L262 16 L278 16 L278 4 Z"/>
+</g>
+<!-- Skull - neon green, positioned between SKELETON and CREW, partially overlapping -->
+<g fill="none" stroke="#00FF41" stroke-linecap="round" stroke-linejoin="round">
+<!-- Skull cranium - compact for tag style -->
+<path d="M296 10 C296 0 306 -6 316 -8 C320 -9 324 -9 326 -9 C328 -9 332 -9 336 -8 C346 -6 356 0 356 10 L356 32 C356 36 354 42 350 46 C348 48 344 52 342 54 L342 56 C342 60 338 62 334 63 C332 64 328 64 326 64 C324 64 320 64 318 63 C314 62 310 60 310 56 L310 54 C308 52 304 48 302 46 C298 42 296 36 296 32 Z" stroke-width="3.5"/>
+<!-- Left eye -->
+<ellipse cx="314" cy="16" rx="9" ry="10" stroke-width="3"/>
+<!-- Right eye -->
+<ellipse cx="338" cy="16" rx="9" ry="10" stroke-width="3"/>
+<!-- Green eye dot -->
+<circle cx="314" cy="16" r="4" fill="#00FF41" stroke="none"/>
+<!-- Nose -->
+<path d="M323 34 L326 38 L329 34" stroke-width="2"/>
+<!-- Teeth -->
+<path d="M312 46 L340 46" stroke-width="2"/>
+<path d="M314 46 L314 52" stroke-width="2"/>
+<path d="M322 46 L322 54" stroke-width="2"/>
+<path d="M330 46 L330 52" stroke-width="2"/>
+<path d="M338 46 L338 54" stroke-width="2"/>
+<!-- Grin -->
+<path d="M312 52 C316 58 322 60 326 60 C330 60 336 58 340 52" stroke-width="2"/>
+</g>
+<!-- CREW text -->
+<g fill="#f5f5f5">
+<!-- C -->
+<path d="M380 24 Q372 32 370 46 Q368 62 376 72 Q382 78 392 78 Q400 78 408 72 L406 62 Q400 68 394 68 Q388 68 384 62 Q380 54 380 46 Q380 38 384 32 Q388 26 394 26 Q400 26 406 30 L408 20 Q400 14 392 14 Q382 14 380 24 Z"/>
+<!-- R -->
+<path d="M420 16 L420 78 L432 78 L432 54 L440 54 L454 78 L468 78 L452 52 Q460 48 462 40 Q464 30 456 22 Q450 16 442 16 Z M432 26 L440 26 Q446 26 450 30 Q452 34 450 40 Q448 44 442 46 L432 46 Z"/>
+<!-- E -->
+<path d="M478 16 L478 78 L512 78 L510 68 L490 68 L490 52 L506 52 L506 42 L490 42 L490 26 L510 26 L512 16 Z"/>
+<!-- W -->
+<path d="M522 16 L536 78 L548 78 L560 36 L572 78 L584 78 L600 16 L588 16 L578 58 L566 16 L554 16 L544 58 L534 16 Z"/>
+</g>
+<!-- Neon accent line at bottom -->
+<line x1="10" y1="90" x2="604" y2="90" stroke="#00FF41" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+</svg>

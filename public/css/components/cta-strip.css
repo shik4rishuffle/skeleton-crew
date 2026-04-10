@@ -1,0 +1,59 @@
+/* ==========================================================================
+   CTA Strip Component
+   Full-width call-to-action band with accent borders.
+   ========================================================================== */
+
+.cta-strip {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  padding: var(--space-2xl) 0;
+  position: relative;
+  overflow: hidden;
+  transform: rotate(-1deg);
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding-inline: 2rem;
+}
+
+.cta-strip__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  text-align: left;
+  transform: rotate(1deg);
+}
+
+.cta-strip__headline {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-wrap: balance;
+  color: var(--color-bg);
+}
+
+.cta-strip .btn--primary {
+  background-color: var(--color-bg);
+  color: var(--color-accent);
+  border-color: var(--color-bg);
+}
+
+.cta-strip .btn--primary:hover {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  border-color: var(--color-text);
+}
+
+/* --- Responsive --- */
+@media (min-width: 600px) {
+  .cta-strip__headline {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cta-strip__headline {
+    font-size: var(--font-size-3xl);
+  }
+}

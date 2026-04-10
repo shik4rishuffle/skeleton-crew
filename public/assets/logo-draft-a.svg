@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500">
+<title>Skeleton Crew logo - Stencil Bomb variant</title>
+<!-- Variant A: Stencil Bomb
+     Concept: Stencil-cut logo as if sprayed through rough cardboard onto concrete.
+     Skull in rough torn-edge frame, tilted 2.5deg. Text below is straight.
+     Stencil bridges on closed letters (S, E, O, R, A, B, D). Rough path edges. -->
+
+<!-- Torn-edge stencil frame around skull, tilted -->
+<g transform="rotate(-2.5 300 165)">
+  <!-- Frame background fill - rough rectangle -->
+  <path d="M108 24 L112 20 L120 22 L128 18 L138 21 L148 17 L158 20 L168 18 L178 22 L188 19 L198 21 L208 17 L218 20 L228 18 L238 22 L248 19 L258 21 L268 17 L278 20 L288 18 L298 22 L308 18 L318 20 L328 17 L338 21 L348 19 L358 22 L368 18 L378 20 L388 17 L398 21 L408 18 L418 22 L428 19 L438 21 L448 17 L458 20 L468 18 L478 22 L486 20 L492 24 L494 32 L492 42 L495 52 L492 62 L494 72 L492 82 L495 92 L492 102 L494 112 L492 122 L495 132 L492 142 L494 152 L492 162 L495 172 L492 182 L494 192 L492 202 L495 212 L492 222 L494 232 L492 242 L495 252 L492 262 L494 272 L492 280 L494 288 L492 296 L490 302 L486 306 L478 304 L468 308 L458 306 L448 309 L438 306 L428 308 L418 304 L408 308 L398 305 L388 309 L378 306 L368 308 L358 304 L348 307 L338 305 L328 309 L318 306 L308 308 L298 304 L288 308 L278 306 L268 309 L258 305 L248 307 L238 304 L228 308 L218 306 L208 309 L198 305 L188 307 L178 304 L168 308 L158 306 L148 309 L138 305 L128 308 L120 304 L112 306 L108 302 L106 296 L108 288 L106 280 L108 272 L105 262 L108 252 L106 242 L108 232 L105 222 L108 212 L106 202 L108 192 L105 182 L108 172 L106 162 L108 152 L105 142 L108 132 L106 122 L108 112 L105 102 L108 92 L106 82 L108 72 L105 62 L108 52 L106 42 L108 32 Z" fill="none" stroke="#f5f5f5" stroke-width="5" stroke-linejoin="round"/>
+</g>
+
+<!-- Skull - asymmetric, mischievous, stencil-feel - inside tilted frame -->
+<g transform="rotate(-2.5 300 165)" fill="#f5f5f5">
+  <!-- Cranium - asymmetric, rough stencil edges -->
+  <path d="M222 52 C218 34 234 20 256 14 C268 10 280 8 290 8 C300 8 314 10 326 16 C348 24 362 40 358 60 L356 106 C354 118 348 130 338 140 C330 148 320 154 312 158 L312 170 C312 178 302 186 290 188 C282 190 274 192 268 192 C262 192 252 190 244 188 C232 186 224 178 224 170 L224 160 C214 154 204 148 196 140 C186 130 180 116 180 106 Z"/>
+  <!-- Left eye socket - LARGER (the big eye) -->
+  <ellipse cx="248" cy="82" rx="28" ry="30" fill="#0a0a0a"/>
+  <!-- Right eye socket - smaller (the knowing wink) -->
+  <ellipse cx="316" cy="78" rx="22" ry="24" fill="#0a0a0a"/>
+  <!-- Neon green dot in the SMALLER right eye -->
+  <circle cx="316" cy="78" r="9" fill="#00FF41"/>
+  <!-- Nose cavity - rough, asymmetric -->
+  <path d="M270 118 L280 136 L290 118 Z" fill="#0a0a0a"/>
+  <!-- Teeth row - uneven, with gaps -->
+  <rect x="230" y="150" width="14" height="20" rx="2" fill="#0a0a0a"/>
+  <rect x="248" y="150" width="13" height="24" rx="2" fill="#0a0a0a"/>
+  <rect x="265" y="150" width="14" height="18" rx="2" fill="#0a0a0a"/>
+  <!-- Cracked tooth -->
+  <path d="M283 150 L283 172 L288 166 L291 174 L296 150 Z" fill="#0a0a0a"/>
+  <!-- Gap where tooth is missing -->
+  <rect x="300" y="150" width="10" height="8" rx="1" fill="#0a0a0a"/>
+  <rect x="314" y="150" width="14" height="22" rx="2" fill="#0a0a0a"/>
+  <rect x="332" y="150" width="12" height="16" rx="2" fill="#0a0a0a"/>
+  <!-- Asymmetric grin - wider on the left -->
+  <path d="M226 170 C236 192 258 202 280 200 C302 198 322 186 336 168" stroke="#0a0a0a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- Collar bones - rough -->
+  <path d="M224 210 L268 228" stroke="#f5f5f5" stroke-width="0" fill="none"/>
+</g>
+
+<!-- SKELETON - Heavy stencil capitals, STRAIGHT (not tilted), creating tension -->
+<g fill="#f5f5f5">
+  <!-- S with stencil bridges -->
+  <path d="M72 348 L72 366 C72 374 78 380 88 382 L112 382 C122 380 128 374 128 366 L128 358 L112 358 L112 364 C112 368 110 370 106 370 L94 370 C90 370 88 368 88 364 L88 362 Z M72 392 L128 392 L128 398 L88 398 L88 400 C88 404 90 406 94 406 L106 406 C110 406 112 404 112 400 L128 400 L128 412 C128 420 122 426 112 428 L88 428 C78 426 72 420 72 412 Z"/>
+  <!-- K -->
+  <path d="M140 348 L156 348 L156 380 L176 348 L196 348 L170 386 L198 428 L178 428 L156 394 L156 428 L140 428 Z"/>
+  <!-- E with stencil bridges -->
+  <path d="M208 348 L208 382 L248 382 L248 370 L224 370 L224 348 Z M208 390 L248 390 L248 394 L224 394 L224 428 L248 428 L248 416 L208 416 Z"/>
+  <!-- L -->
+  <path d="M258 348 L274 348 L274 416 L304 416 L304 428 L258 428 Z"/>
+  <!-- E with stencil bridges -->
+  <path d="M314 348 L314 382 L354 382 L354 370 L330 370 L330 348 Z M314 390 L354 390 L354 394 L330 394 L330 428 L354 428 L354 416 L314 416 Z"/>
+  <!-- T -->
+  <path d="M364 348 L412 348 L412 362 L396 362 L396 428 L380 428 L380 362 L364 362 Z"/>
+  <!-- O with stencil bridges -->
+  <path d="M426 362 C420 370 418 380 418 388 L418 378 C418 368 424 358 436 354 C442 352 448 352 454 354 C466 358 472 368 472 378 L472 382 L456 382 L456 378 C456 374 454 370 450 368 C448 366 444 366 440 368 C436 370 434 374 434 378 L434 382 Z M418 392 L434 392 L434 398 C434 402 436 406 440 408 C444 410 448 410 452 408 C456 406 458 402 458 398 L458 392 L472 392 L472 398 C472 410 466 420 454 424 C448 426 442 426 436 424 C424 420 418 410 418 398 Z"/>
+  <!-- N -->
+  <path d="M484 348 L500 348 L500 390 L524 428 L540 428 L540 362 L524 362 L524 398 L500 362 L500 348 L484 348 Z"/>
+</g>
+
+<!-- CREW - stencil capitals, centred below -->
+<g fill="#f5f5f5">
+  <!-- C with stencil bridge -->
+  <path d="M164 444 C156 450 152 460 152 468 L152 464 C152 454 158 446 168 442 C174 440 178 440 184 442 L184 436 C178 434 172 436 166 440 Z M152 478 C152 488 158 496 168 500 C174 502 180 502 186 500 L186 494 C180 496 174 496 168 494 C160 490 156 484 156 478 Z M152 470 L168 470 L168 478 C168 482 170 484 174 484 L178 484 C182 484 184 482 184 478 L184 470 L152 470 Z"/>
+  <!-- R with stencil bridge -->
+  <path d="M200 436 L200 468 L230 468 C240 468 246 462 246 454 C246 446 240 440 230 440 L216 440 L216 436 Z M200 476 L216 476 L216 480 L224 480 L246 502 L264 502 L240 478 C246 476 250 472 250 468 L234 468 Z M216 452 L226 452 C230 452 232 454 232 456 C232 458 230 460 226 460 L216 460 Z"/>
+  <!-- E with stencil bridges -->
+  <path d="M272 436 L272 468 L310 468 L310 458 L288 458 L288 436 Z M272 476 L310 476 L310 480 L288 480 L288 502 L310 502 L310 492 L272 492 Z"/>
+  <!-- W -->
+  <path d="M322 436 L338 502 L354 502 L368 456 L382 502 L398 502 L416 436 L400 436 L390 484 L376 436 L362 436 L350 484 L340 436 Z"/>
+</g>
+</svg>

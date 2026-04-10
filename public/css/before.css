@@ -1,0 +1,563 @@
+/* ==========================================================================
+   Before Mode - Generic Template Overrides
+   ==========================================================================
+   Every rule scoped under body.before-mode. This stylesheet transforms the
+   Skeleton Crew site into a deliberately generic, uninspired template site -
+   the kind of Wix/Squarespace default that small businesses settle for.
+   The toggle demo swaps between this and the real site to show the
+   difference bespoke design makes.
+   ========================================================================== */
+
+/* --- Design token overrides ---
+   Swap the dark/neon palette for flat grey/royal blue. Swap custom fonts
+   for Arial. These cascade through every component that uses tokens, so
+   we do NOT need to repeat font-family on individual selectors. */
+body.before-mode {
+  --color-bg: #f0f0f0;
+  --color-surface: #ffffff;
+  --color-text: #333333;
+  --color-accent: #003087;
+  --color-muted: #666666;
+  --color-border: #dddddd;
+  --font-display: Arial, Helvetica, sans-serif;
+  --font-heading: Arial, Helvetica, sans-serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-size-hero: 2.5rem;
+  --border-radius: 0;
+  --nav-height: 5rem;
+}
+
+/* --- Body --- */
+body.before-mode {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* --- Noise texture - templates don't have texture --- */
+body.before-mode::after {
+  display: none;
+}
+
+/* --- Headings ---
+   Strip uppercase and visual punch. Font-family comes from the token
+   overrides above. Colour forced to brand blue (not --color-text). */
+body.before-mode h1,
+body.before-mode h2,
+body.before-mode h3,
+body.before-mode h4 {
+  text-transform: none;
+  letter-spacing: normal;
+  color: #003087;
+}
+
+/* --- Links --- */
+body.before-mode a {
+  color: #003087;
+}
+
+body.before-mode a:focus-visible {
+  outline-color: #003087;
+}
+
+/* --- Buttons ---
+   All buttons look identical: royal blue, square, drop shadow, oversized
+   padding. No ghost variant distinction - everything is the same generic
+   slab. */
+body.before-mode .btn {
+  text-transform: none;
+  letter-spacing: normal;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  background-color: #003087;
+  color: #ffffff;
+  border: 2px solid #003087;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.before-mode .btn:hover {
+  background-color: #002060;
+  text-decoration: none;
+}
+
+body.before-mode .btn--primary {
+  background-color: #003087;
+  color: #ffffff;
+}
+
+body.before-mode .btn--primary:hover {
+  background-color: #002060;
+}
+
+body.before-mode .btn--ghost {
+  background-color: #003087;
+  color: #ffffff;
+  border: 2px solid #003087;
+}
+
+body.before-mode .btn--ghost:hover {
+  background-color: #002060;
+  color: #ffffff;
+}
+
+/* --- Toggle button and pill - DO NOT restyle ---
+   These are UI controls, not part of the before/after demo. They keep
+   their normal styling so users always know how to toggle back. */
+body.before-mode .toggle__btn {
+  background-color: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: none;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: var(--font-size-lg);
+}
+
+body.before-mode .toggle__btn:hover {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* --- Skip link ---
+   Keep functional but match the before-mode palette */
+body.before-mode .skip-link {
+  background-color: #003087;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Nav - Solid Blue Bar
+   The hallmark of every template site: an oversized solid-colour nav bar
+   with no transparency, no subtlety, and a gratuitous drop shadow.
+   ========================================================================== */
+body.before-mode .nav {
+  background-color: #003087;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  height: 5rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.before-mode .nav__inner {
+  height: 5rem;
+}
+
+body.before-mode .nav__logo-img {
+  /* Invert/desaturate to simulate a plain white text logo on blue bg */
+  filter: brightness(0) invert(1);
+}
+
+body.before-mode .nav__logo-text {
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: none;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+
+body.before-mode .nav__link {
+  text-transform: none;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+
+body.before-mode .nav__link::after {
+  background-color: #ffffff;
+  height: 2px;
+  transform: scaleX(0);
+}
+
+body.before-mode .nav__link:hover {
+  color: #cccccc;
+}
+
+/* Hamburger lines go white on blue */
+body.before-mode .nav__burger-line {
+  background-color: #ffffff;
+}
+
+/* Mobile overlay becomes a flat white panel */
+body.before-mode .nav__overlay {
+  background-color: rgba(255, 255, 255, 0.98);
+}
+
+body.before-mode .nav__overlay-link {
+  text-transform: none;
+  letter-spacing: normal;
+  color: #003087;
+}
+
+body.before-mode .nav__overlay-link:hover {
+  color: #800020;
+}
+
+/* ==========================================================================
+   Hero - Bad Stock Photo Gradient
+   A CSS gradient that simulates the washed-out blue-to-lighter-blue
+   gradient every template site uses instead of real photography.
+   ========================================================================== */
+body.before-mode .hero {
+  min-height: 60vh;
+  background: linear-gradient(160deg, #003087 0%, #4a7cc9 50%, #7ba3d9 100%);
+}
+
+/* Kill the animated background - templates don't have those */
+body.before-mode .hero__bg {
+  display: none;
+}
+
+body.before-mode .hero__content {
+  text-align: center;
+}
+
+/* Headline: smaller, no uppercase, white on gradient */
+body.before-mode .hero__headline {
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-transform: none;
+  line-height: 1.3;
+  max-width: none;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Subheadline: centred, light grey, generic */
+body.before-mode .hero__sub {
+  color: rgba(255, 255, 255, 0.8);
+  max-width: none;
+  font-size: 1rem;
+}
+
+/* CTA buttons in hero */
+body.before-mode .hero__ctas {
+  margin-top: var(--space-lg);
+}
+
+/* ==========================================================================
+   What We Do Cards
+   White background, grey border, centred text. No accent colour.
+   ========================================================================== */
+body.before-mode .what-we-do__grid {
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+}
+
+body.before-mode .what-we-do__card {
+  background-color: #ffffff;
+  border: 2px solid #dddddd;
+  border-left: 2px solid #dddddd;
+  border-top: 2px solid #dddddd;
+  border-radius: 0;
+  padding: var(--space-xl);
+  text-align: center;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.before-mode .what-we-do__title {
+  text-transform: none;
+  letter-spacing: normal;
+  color: #003087;
+  font-size: 1.5rem;
+}
+
+body.before-mode .what-we-do__body {
+  font-weight: 400;
+  text-align: center;
+}
+
+/* ==========================================================================
+   Portfolio Cards
+   White, boxy, thick grey border. No hover effects.
+   ========================================================================== */
+body.before-mode .portfolio__heading {
+  text-align: center;
+  color: #003087;
+}
+
+body.before-mode .portfolio__grid {
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+}
+
+body.before-mode .portfolio__card {
+  background-color: #ffffff;
+  border: 3px solid #dddddd;
+  border-radius: 0;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  transition: none;
+}
+
+body.before-mode .portfolio__card:hover {
+  transform: none;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: #dddddd;
+}
+
+body.before-mode .portfolio__card:hover .portfolio__title {
+  color: #003087;
+}
+
+body.before-mode .portfolio__image {
+  filter: none;
+}
+
+body.before-mode .portfolio__info {
+  text-align: center;
+  padding: var(--space-md);
+}
+
+body.before-mode .portfolio__title {
+  text-transform: none;
+  letter-spacing: normal;
+  color: #003087;
+}
+
+body.before-mode .portfolio__more {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+body.before-mode .portfolio__more:hover {
+  color: #002060;
+}
+
+/* ==========================================================================
+   Pricing Cards
+   White background, grey borders. The featured tier loses its special
+   treatment - all tiers look identical, which is the whole problem.
+   ========================================================================== */
+body.before-mode .pricing__heading {
+  text-align: center;
+  color: #003087;
+}
+
+body.before-mode .pricing__grid {
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+}
+
+body.before-mode .pricing__card {
+  background-color: #ffffff;
+  border: 2px solid #dddddd;
+  border-radius: 0;
+  padding: var(--space-xl);
+  text-align: center;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  transform: none;
+}
+
+/* Featured tier loses its accent border and badge - looks the same as others */
+body.before-mode .pricing__card--featured {
+  border: 2px solid #dddddd;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  transform: none;
+}
+
+body.before-mode .pricing__card--featured::before {
+  content: none;
+}
+
+body.before-mode .pricing__card--featured:hover,
+body.before-mode .pricing__card:hover {
+  transform: none;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: #dddddd;
+}
+
+body.before-mode .pricing__name {
+  text-transform: none;
+  letter-spacing: normal;
+  color: #003087;
+}
+
+body.before-mode .pricing__price {
+  color: #800020;
+}
+
+body.before-mode .pricing__features li {
+  padding-left: 0;
+  font-size: 1rem;
+}
+
+body.before-mode .pricing__features li::before {
+  display: none;
+}
+
+body.before-mode .pricing__cta .btn {
+  width: 100%;
+}
+
+body.before-mode .pricing__more {
+  color: #ffffff;
+  background-color: #003087;
+  border: 2px solid #003087;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.before-mode .pricing__more:hover {
+  color: #ffffff;
+  background-color: #002060;
+}
+
+/* ==========================================================================
+   CTA Strip
+   Light grey background, blue text. Generic and forgettable.
+   ========================================================================== */
+body.before-mode .cta-strip {
+  background-color: #e8e8e8;
+  padding: var(--space-xl) 0;
+  border-top: 2px solid #cccccc;
+  border-bottom: 2px solid #cccccc;
+  transform: none;
+  width: auto;
+  margin-left: 0;
+  padding-inline: 0;
+}
+
+body.before-mode .cta-strip__headline {
+  text-transform: none;
+  letter-spacing: normal;
+  color: #003087;
+  font-size: 1.5rem;
+}
+
+body.before-mode .cta-strip__inner {
+  align-items: center;
+  text-align: center;
+  transform: none;
+}
+
+body.before-mode .cta-strip .btn--primary {
+  background-color: #003087;
+  color: #ffffff;
+  border: 2px solid #003087;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.before-mode .cta-strip .btn--primary:hover {
+  background-color: #002060;
+  color: #ffffff;
+  border-color: #002060;
+}
+
+/* ==========================================================================
+   Footer
+   Light grey background, dark text. Generic, flat, forgettable.
+   ========================================================================== */
+body.before-mode .footer {
+  background-color: #e0e0e0;
+  border-top: 2px solid #cccccc;
+  padding: var(--space-lg) 0;
+}
+
+/* Dashed footer edge - hidden in before-mode */
+body.before-mode .footer__line {
+  display: none;
+}
+
+body.before-mode .footer__inner {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+body.before-mode .footer__logo-img {
+  filter: brightness(0);
+}
+
+body.before-mode .footer__link {
+  text-transform: none;
+  letter-spacing: normal;
+  color: #333333;
+}
+
+body.before-mode .footer__link:hover {
+  color: #800020;
+}
+
+body.before-mode .footer__copy {
+  color: #999999;
+}
+
+/* ==========================================================================
+   Skeleton Loaders - Before Mode
+   Light grey on white, matching the before-mode palette.
+   ========================================================================== */
+body.before-mode .skeleton__image,
+body.before-mode .skeleton__line {
+  background-color: #e0e0e0;
+  border-radius: 0;
+}
+
+/* ==========================================================================
+   Sections and Layout - Global Overrides
+   Everything centred. Generous (read: excessive) padding.
+   ========================================================================== */
+body.before-mode .section,
+body.before-mode .container {
+  text-align: center;
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   In before-mode, things stay centred and boxy at all breakpoints.
+   ========================================================================== */
+
+/* Mobile - hero headline uses fixed size, no clamp, looks generic */
+body.before-mode .hero__headline {
+  font-size: 1.75rem;
+  max-width: none;
+}
+
+body.before-mode .hero__sub {
+  font-size: 0.9rem;
+}
+
+@media (min-width: 600px) {
+  body.before-mode .hero__headline {
+    font-size: 2rem;
+  }
+
+  body.before-mode .hero__sub {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  body.before-mode .hero__headline {
+    font-size: 2.5rem;
+  }
+
+  body.before-mode .cta-strip__headline {
+    font-size: 1.75rem;
+  }
+}
+
+/* Contact section - maintain tight spacing in before-mode */
+body.before-mode .contact {
+  padding-top: var(--space-lg);
+}
+
+/* ==========================================================================
+   Phase 5 Overrides - Strip subversive design elements in before-mode
+   ========================================================================== */
+
+/* Angled section dividers */
+body.before-mode .section--angled::after {
+  display: none;
+}
+
+body.before-mode .section--angled {
+  padding-bottom: var(--space-section);
+}
+
+/* Double-border card effect */
+body.before-mode .what-we-do__card::before {
+  display: none;
+}
+
+/* Section heading slashes */
+body.before-mode .section__heading::before {
+  display: none;
+}

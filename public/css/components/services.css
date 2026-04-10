@@ -1,0 +1,25 @@
+/* ==========================================================================
+   Services Page - Skeleton Crew
+   Section headings and intro paragraphs specific to the services page.
+   Pricing cards are handled by pricing.css.
+   ========================================================================== */
+
+/* --- Section spacing --- */
+.services__section + .services__section {
+  padding-top: 0;
+}
+
+/* --- Section heading --- */
+.services__heading {
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-3xl);
+}
+
+/* --- Intro paragraph --- */
+.services__intro {
+  color: var(--color-muted);
+  max-width: 60ch;
+  margin-bottom: var(--space-xl);
+  line-height: 1.6;
+  font-size: var(--font-size-lg);
+}

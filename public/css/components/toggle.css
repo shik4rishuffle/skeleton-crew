@@ -1,0 +1,75 @@
+/* ==========================================================================
+   Toggle Component
+   Button pulse animation and pill positioning for the before/after demo.
+   ========================================================================== */
+
+/* --- Pulse animation ---
+   Draws attention to the toggle button on first load. A subtle scale
+   and glow effect that says "click me" without being obnoxious. The
+   JS removes .toggle__btn--pulse after the first interaction. */
+.toggle__btn--pulse {
+  animation: toggle-pulse 2s ease-in-out infinite;
+}
+
+@keyframes toggle-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(46, 204, 64, 0.4);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 16px 4px rgba(46, 204, 64, 0.2);
+  }
+}
+
+/* --- Toggle pill ---
+   Fixed bottom-right corner, floats above everything. */
+.toggle__pill {
+  position: fixed;
+  bottom: var(--space-sm);
+  right: var(--space-sm);
+  z-index: 200;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+    background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+}
+
+.toggle__pill:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(46, 204, 64, 0.4);
+}
+
+.toggle__pill:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 3px;
+}
+
+@media (min-width: 600px) {
+  .toggle__pill {
+    bottom: var(--space-md);
+    right: var(--space-md);
+  }
+}
+
+/* --- Reduced motion: kill the pulse animation ---
+   The toggle still works - just no pulsing to draw the eye. */
+@media (prefers-reduced-motion: reduce) {
+  .toggle__btn--pulse {
+    animation: none;
+  }
+}

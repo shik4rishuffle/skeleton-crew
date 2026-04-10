@@ -1,0 +1,6 @@
+.DS_Store
+.orchestrator-events.ndjson
+*.png
+*.zip
+.agent/
+.claude/

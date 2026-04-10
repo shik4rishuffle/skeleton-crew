@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Design Tokens - Skeleton Crew
+   ==========================================================================
+   This is the single source of truth for all visual design tokens.
+   To reskin the site for a different client, this is the only file
+   you need to edit - swap the accent colour and font families and
+   everything else follows.
+   ========================================================================== */
+
+:root {
+  /* --- Colours ---
+     Accent colour is loud - use it sparingly for headlines, key CTAs,
+     hover states, and underlines. The restraint is what makes it hit. */
+  --color-bg: #0a0a0a;
+  --color-surface: #111111;
+  --color-text: #f5f5f5;
+  --color-accent: #2ECC40;
+  --color-muted: #888888; /* bumped from #666 for WCAG AA on dark backgrounds */
+  --color-border: #222222;
+  --color-accent-hover: #3DDB4F;
+  --color-accent-muted: rgba(46, 204, 64, 0.15);
+  --color-error: #ff4444;
+
+  /* --- Typography ---
+     Three fonts maximum - Permanent Marker, Bebas Neue, DM Sans.
+     Permanent Marker: hero/H1 only. Bebas Neue: nav, section titles, H2+.
+     DM Sans: body copy, labels, form fields. */
+  --font-display: 'Permanent Marker', cursive;
+  --font-heading: 'Bebas Neue', Impact, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  /* --- Font sizes ---
+     Hero size uses clamp() for fluid scaling without breakpoints. */
+  --font-size-base: 1rem;
+  --font-size-sm: 0.875rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 3rem;
+  --font-size-hero: clamp(3rem, 8vw, 6rem);
+
+  /* --- Spacing scale --- */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-section: clamp(3rem, 5vw, 5rem);
+
+  /* --- Layout --- */
+  --max-width: 1200px;
+  --nav-height: 4rem;
+  --border-radius: 4px;
+
+  /* --- Transitions --- */
+  --transition-fast: 200ms ease-out;
+  --transition-base: 300ms ease-out;
+}

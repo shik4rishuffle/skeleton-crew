@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Skeleton Crew - bespoke web design and AI consulting for small UK businesses">
+  <title>Skeleton Crew - Bespoke Web Design & AI Consulting</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://skeleton-crew.co.uk/">
+  <meta property="og:title" content="Skeleton Crew - Bespoke Web Design & AI Consulting">
+  <meta property="og:description" content="Bespoke web design and AI consulting for small UK businesses that refuse to settle.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://skeleton-crew.co.uk/">
+  <meta property="og:image" content="https://skeleton-crew.co.uk/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebDesignAgency",
+    "name": "Skeleton Crew",
+    "url": "https://skeleton-crew.co.uk",
+    "description": "Bespoke web design and AI consulting for small UK businesses",
+    "areaServed": "GB",
+    "serviceType": ["Web Design", "AI Consulting"]
+  }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/before.css">
+  <link rel="stylesheet" href="/css/components/hero.css">
+  <link rel="stylesheet" href="/css/components/nav.css">
+  <link rel="stylesheet" href="/css/components/toggle.css">
+  <link rel="stylesheet" href="/css/components/what-we-do.css">
+  <link rel="stylesheet" href="/css/components/portfolio.css">
+  <link rel="stylesheet" href="/css/components/pricing.css">
+  <link rel="stylesheet" href="/css/components/cta-strip.css">
+  <link rel="stylesheet" href="/css/components/footer.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="nav" role="banner">
+    <div class="nav__inner container">
+      <a href="/" class="nav__logo" aria-label="Skeleton Crew home">
+        <img src="/assets/logo.svg" alt="Skeleton Crew" class="nav__logo-img">
+        <span class="nav__logo-text">SKELETON CREW</span>
+      </a>
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="/work/" class="nav__link">Work</a>
+        <a href="/services/" class="nav__link">Services</a>
+        <a href="/contact/" class="nav__link">Contact</a>
+      </nav>
+      <button class="nav__burger" type="button" aria-expanded="false" aria-controls="nav-overlay" aria-label="Menu">
+        <span class="nav__burger-line"></span>
+        <span class="nav__burger-line"></span>
+        <span class="nav__burger-line"></span>
+      </button>
+    </div>
+    <div class="nav__overlay" id="nav-overlay" aria-hidden="true">
+      <nav class="nav__overlay-links" aria-label="Mobile navigation">
+        <a href="/work/" class="nav__overlay-link">Work</a>
+        <a href="/services/" class="nav__overlay-link">Services</a>
+        <a href="/contact/" class="nav__overlay-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__content container">
+        <h1 class="hero__headline" data-ghost="hero-title">
+          Websites that don't look like everyone else's.
+        </h1>
+        <p class="hero__sub" data-ghost="hero-subtitle">
+          Bespoke web design and AI consulting for small UK businesses that refuse to settle.
+        </p>
+        <div class="hero__ctas">
+          <a href="/work/" class="btn btn--primary">See our work</a>
+          <a href="/contact/" class="btn btn--ghost">Get a quote</a>
+        </div>
+        <button class="toggle__btn btn btn--ghost" type="button" aria-pressed="false" data-toggle="before">
+          See what everyone else gives you
+        </button>
+      </div>
+    </section>
+
+    <section class="section section--angled what-we-do" id="what-we-do">
+      <div class="container">
+        <div class="what-we-do__grid">
+          <article class="what-we-do__card">
+            <h2 class="what-we-do__title" data-ghost="what-we-do-websites-title">Website Builds</h2>
+            <div class="what-we-do__body" data-ghost="what-we-do-websites-body">
+              <p>We build websites that make your competitors nervous. No templates, no page builders, no compromise. Just a site that looks like yours and nobody else's.</p>
+            </div>
+          </article>
+          <article class="what-we-do__card">
+            <h2 class="what-we-do__title" data-ghost="what-we-do-ai-title">AI Consulting</h2>
+            <div class="what-we-do__body" data-ghost="what-we-do-ai-body">
+              <p>We find the repetitive tasks eating your day and replace them with AI that actually works. No hype, no jargon - just fewer hours wasted on things a machine should be doing.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--angled portfolio" id="portfolio">
+      <div class="container">
+        <h2 class="portfolio__heading section__heading">Our Work</h2>
+        <div class="portfolio__grid" data-ghost="portfolio">
+          <article class="portfolio__card skeleton" aria-hidden="true">
+            <div class="skeleton__image"></div>
+            <div class="skeleton__line skeleton__line--title"></div>
+            <div class="skeleton__line skeleton__line--text"></div>
+          </article>
+          <article class="portfolio__card skeleton" aria-hidden="true">
+            <div class="skeleton__image"></div>
+            <div class="skeleton__line skeleton__line--title"></div>
+            <div class="skeleton__line skeleton__line--text"></div>
+          </article>
+          <article class="portfolio__card skeleton" aria-hidden="true">
+            <div class="skeleton__image"></div>
+            <div class="skeleton__line skeleton__line--title"></div>
+            <div class="skeleton__line skeleton__line--text"></div>
+          </article>
+        </div>
+        <a href="/work/" class="portfolio__more">See all work &rarr;</a>
+      </div>
+    </section>
+
+    <section class="section pricing" id="pricing">
+      <div class="container">
+        <h2 class="pricing__heading section__heading">What It Costs</h2>
+        <div class="pricing__grid" data-ghost="pricing-website">
+          <article class="pricing__card skeleton" aria-hidden="true">
+            <div class="skeleton__line skeleton__line--title"></div>
+            <div class="skeleton__line skeleton__line--text"></div>
+            <div class="skeleton__line skeleton__line--text"></div>
+            <div class="skeleton__line skeleton__line--text"></div>
+          </article>
+          <article class="pricing__card skeleton" aria-hidden="true">
+            <div class="skeleton__line skeleton__line--title"></div>
+            <div class="skeleton__line skeleton__line--text"></div>
+            <div class="skeleton__line skeleton__line--text"></div>
+            <div class="skeleton__line skeleton__line--text"></div>
+          </article>
+          <article class="pricing__card skeleton" aria-hidden="true">
+            <div class="skeleton__line skeleton__line--title"></div>
+            <div class="skeleton__line skeleton__line--text"></div>
+            <div class="skeleton__line skeleton__line--text"></div>
+            <div class="skeleton__line skeleton__line--text"></div>
+          </article>
+        </div>
+        <a href="/services/" class="pricing__more btn btn--ghost">See all services</a>
+      </div>
+    </section>
+
+    <section class="cta-strip">
+      <div class="container cta-strip__inner">
+        <h2 class="cta-strip__headline" data-ghost="cta-title">Your competitors have a website. Do you?</h2>
+        <a href="/contact/" class="btn btn--primary cta-strip__btn" data-ghost="cta-button">Let's talk</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer__line" aria-hidden="true"></div>
+    <div class="footer__inner container">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo" aria-label="Skeleton Crew home">
+          <img src="/assets/logo.svg" alt="Skeleton Crew" class="footer__logo-img">
+        </a>
+        <p class="footer__tagline">Bespoke web design and AI consulting for small businesses that refuse to settle.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="/work/" class="footer__link">Work</a>
+        <a href="/services/" class="footer__link">Services</a>
+        <a href="/contact/" class="footer__link">Contact</a>
+      </nav>
+      <p class="footer__copy">&copy; <span id="footer-year"></span> Skeleton Crew</p>
+    </div>
+  </footer>
+
+  <button class="toggle__pill" type="button" aria-live="polite" aria-label="Toggle between before and after design">OURS</button>
+
+  <script src="/js/vendor/gsap.min.js" defer></script>
+  <script src="/js/vendor/ScrollTrigger.min.js" defer></script>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
