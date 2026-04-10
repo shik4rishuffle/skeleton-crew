@@ -125,7 +125,7 @@
    Solid green with glow, wobbles every few seconds to draw the eye. */
 .hero__ctas .btn--primary {
   box-shadow: 0 0 16px rgba(46, 204, 64, 0.3), 0 4px 12px rgba(0, 0, 0, 0.4);
-  animation: btn-wobble 4s ease-in-out infinite;
+  animation: btn-wobble 3s ease-in-out infinite;
 }
 
 @keyframes btn-wobble {
