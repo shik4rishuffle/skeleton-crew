@@ -5,7 +5,7 @@ import { initNav } from './nav.js';
 import { initToggle } from './toggle.js';
 import { initAnimations, animatePortfolioCards, animatePricingCards } from './animations.js';
 import { initContactForm } from './contact-form.js';
-import { initCMSContent, initWorkPageContent, initServicesContent } from './cms-api.js';
+import { initPageContent } from './cms-api.js';
 import { initHeroTilt, initCardTilt, initParallax, initTextReveal } from './effects.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,15 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('footer-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // CMS content - conditionally load based on which page we are on
-  if (document.querySelector('[data-cms="portfolio-full"]')) {
-    initWorkPageContent();
-  } else if (document.querySelector('[data-cms="pricing-website-full"]')) {
-    initServicesContent();
-  } else if (document.querySelector('[data-cms="portfolio"]')) {
-    initCMSContent();
+  // CMS content - detect page from body data attribute
+  const pageSlug = document.body.dataset.page;
+  if (pageSlug) {
+    initPageContent(pageSlug);
   }
-  // Contact page (and any page without CMS containers) skips CMS loading
 
   // Observe portfolio and pricing grids for content changes - when CMS
   // data or fallback content replaces skeleton loaders, trigger scroll

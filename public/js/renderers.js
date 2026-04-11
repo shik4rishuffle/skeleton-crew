@@ -1,5 +1,6 @@
 // renderers.js - DOM rendering functions for CMS content rendering
-// Each function takes CMS data and updates the corresponding page section.
+// Block-based renderers for Payload CMS Pages collection, plus portfolio
+// and pricing card renderers that remain unchanged.
 
 // --- Helpers ---
 
@@ -14,83 +15,250 @@ function sanitizeHTML(html) {
     .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '');
 }
 
-// --- Site content renderer ---
+// --- Block renderers ---
 
 /**
- * Updates elements with data-cms attributes using CMS page data.
- * Expects data shaped as { heroes: [...], ctaStrips: [...], services: [...] }.
- * Uses textContent for titles/excerpts, innerHTML for body content.
+ * Renders a hero block - updates headline, subheadline, CTAs, and toggle
+ * button text using data-cms attributes in the existing HTML.
  */
-export function renderSiteContent(data) {
-  if (!data) return;
+export function renderHeroBlock(block) {
+  if (!block) return;
 
-  // Hero
-  const hero = data.heroes?.find(h => h.pageKey === 'homepage');
-  if (hero) {
-    const heroTitle = document.querySelector('[data-cms="hero-title"]');
-    const heroSub = document.querySelector('[data-cms="hero-subtitle"]');
-    if (heroTitle) {
-      heroTitle.textContent = hero.headline || heroTitle.textContent;
-      // Sync the reveal layer text for the text reveal effect
-      const reveal = document.querySelector('.hero__headline-reveal');
-      if (reveal) reveal.textContent = heroTitle.textContent;
+  const heroTitle = document.querySelector('[data-cms="hero-title"]')
+    || document.querySelector('[data-cms="work-hero-title"]')
+    || document.querySelector('[data-cms="services-hero-title"]');
+  const heroSub = document.querySelector('[data-cms="hero-subtitle"]')
+    || document.querySelector('[data-cms="work-hero-subtitle"]')
+    || document.querySelector('[data-cms="services-hero-subtitle"]');
+
+  if (heroTitle && block.headline) {
+    heroTitle.textContent = block.headline;
+    // Sync the reveal layer text for the text reveal effect
+    const reveal = document.querySelector('.hero__headline-reveal');
+    if (reveal) reveal.textContent = heroTitle.textContent;
+  }
+
+  if (heroSub && block.subheadline) {
+    heroSub.textContent = block.subheadline;
+  }
+
+  // Rebuild CTA links if provided
+  if (block.ctas && block.ctas.length > 0) {
+    const ctaContainer = document.querySelector('.hero__ctas');
+    if (ctaContainer) {
+      // Preserve the toggle button if it exists
+      const toggleBtn = ctaContainer.querySelector('.toggle__btn');
+
+      const ctaLinks = block.ctas.map(cta => {
+        const style = cta.style || 'ghost';
+        const url = cta.url || '#';
+        const text = cta.text || '';
+        return `<a href="${url}" class="btn btn--${style}">${sanitizeHTML(text)}</a>`;
+      }).join('');
+
+      ctaContainer.innerHTML = ctaLinks;
+
+      // Re-append the toggle button if it existed
+      if (toggleBtn) {
+        ctaContainer.appendChild(toggleBtn);
+      }
     }
-    if (heroSub) heroSub.textContent = hero.subheadline || heroSub.textContent;
   }
 
-  // CTA strip
-  const cta = data.ctaStrips?.[0];
-  if (cta) {
-    const ctaTitle = document.querySelector('[data-cms="cta-title"]');
-    const ctaButton = document.querySelector('[data-cms="cta-button"]');
-    if (ctaTitle) ctaTitle.textContent = cta.headline || ctaTitle.textContent;
-    if (ctaButton) ctaButton.textContent = cta.buttonText || ctaButton.textContent;
-  }
-
-  // Work page hero
-  const workHero = data.heroes?.find(h => h.pageKey === 'work');
-  if (workHero) {
-    const workTitle = document.querySelector('[data-cms="work-hero-title"]');
-    const workSub = document.querySelector('[data-cms="work-hero-subtitle"]');
-    if (workTitle) workTitle.textContent = workHero.headline || workTitle.textContent;
-    if (workSub) workSub.textContent = workHero.subheadline || workSub.textContent;
-  }
-
-  // Services page hero
-  const servicesHero = data.heroes?.find(h => h.pageKey === 'services');
-  if (servicesHero) {
-    const servicesTitle = document.querySelector('[data-cms="services-hero-title"]');
-    const servicesSub = document.querySelector('[data-cms="services-hero-subtitle"]');
-    if (servicesTitle) servicesTitle.textContent = servicesHero.headline || servicesTitle.textContent;
-    if (servicesSub) servicesSub.textContent = servicesHero.subheadline || servicesSub.textContent;
-  }
-
-  // What we do - websites
-  const websites = data.services?.find(s => s.serviceKey === 'websites');
-  if (websites) {
-    const title = document.querySelector('[data-cms="what-we-do-websites-title"]');
-    const body = document.querySelector('[data-cms="what-we-do-websites-body"]');
-    if (title) title.textContent = websites.title || title.textContent;
-    if (body && websites.body) body.innerHTML = '<p>' + sanitizeHTML(websites.body) + '</p>';
-  }
-
-  // What we do - AI
-  const ai = data.services?.find(s => s.serviceKey === 'ai');
-  if (ai) {
-    const title = document.querySelector('[data-cms="what-we-do-ai-title"]');
-    const body = document.querySelector('[data-cms="what-we-do-ai-body"]');
-    if (title) title.textContent = ai.title || title.textContent;
-    if (body && ai.body) body.innerHTML = '<p>' + sanitizeHTML(ai.body) + '</p>';
+  // Update toggle button text if provided
+  if (block.toggleButtonText) {
+    const toggleBtn = document.querySelector('.toggle__btn');
+    if (toggleBtn) toggleBtn.textContent = block.toggleButtonText;
   }
 }
 
 /**
- * Fallback for site content - leaves existing HTML in place.
- * The static HTML already contains sensible default text for hero,
- * CTA strip, and what-we-do sections, so no action is needed.
+ * Renders a service cards block - updates the what-we-do cards on the
+ * homepage by matching cards array indices to DOM card elements.
  */
-export function renderSiteContentFallback() {
-  // Fallback text is already in the static HTML - nothing to do
+export function renderServiceCardsBlock(block) {
+  if (!block || !block.cards) return;
+
+  const cards = document.querySelectorAll('.what-we-do__card');
+  block.cards.forEach((card, i) => {
+    if (!cards[i]) return;
+
+    const titleEl = cards[i].querySelector('.what-we-do__title');
+    const bodyEl = cards[i].querySelector('.what-we-do__body');
+
+    if (titleEl && card.title) titleEl.textContent = card.title;
+    if (bodyEl && card.body) bodyEl.innerHTML = `<p>${sanitizeHTML(card.body)}</p>`;
+  });
+}
+
+/**
+ * Renders a portfolio teaser block - updates heading and "see more" link,
+ * then delegates to renderPortfolio for the card grid.
+ */
+export function renderPortfolioTeaserBlock(block, portfolioData) {
+  if (!block) return;
+
+  const heading = document.querySelector('.portfolio__heading');
+  if (heading && block.sectionHeading) heading.textContent = block.sectionHeading;
+
+  const moreLink = document.querySelector('.portfolio__more');
+  if (moreLink && block.linkText) {
+    moreLink.textContent = block.linkText;
+    if (block.linkUrl) moreLink.href = block.linkUrl;
+  }
+
+  if (portfolioData) {
+    renderPortfolio(portfolioData, '[data-cms="portfolio"]');
+  }
+}
+
+/**
+ * Renders a portfolio grid block - the full portfolio page grid.
+ * Optionally updates a heading, then delegates to renderPortfolio.
+ */
+export function renderPortfolioGridBlock(block, portfolioData) {
+  if (!block) return;
+
+  if (block.sectionHeading) {
+    const heading = document.querySelector('.portfolio--full .section__heading');
+    if (heading) heading.textContent = block.sectionHeading;
+  }
+
+  if (portfolioData) {
+    renderPortfolio(portfolioData, '[data-cms="portfolio-full"]');
+  }
+}
+
+/**
+ * Renders a pricing section block - updates the section heading and intro
+ * text near the target container, then delegates to renderPricing.
+ *
+ * @param {Object} block - The pricing section block from the layout
+ * @param {Array} pricingData - Pricing tier docs from the API
+ * @param {string} containerSelector - data-cms selector for the pricing grid
+ */
+export function renderPricingSectionBlock(block, pricingData, containerSelector) {
+  if (!block) return;
+
+  const container = document.querySelector(containerSelector);
+  if (container) {
+    const section = container.closest('section');
+    if (section) {
+      if (block.sectionHeading) {
+        const heading = section.querySelector('.section__heading');
+        if (heading) heading.textContent = block.sectionHeading;
+      }
+      if (block.introText) {
+        const intro = section.querySelector('.services__intro');
+        if (intro) intro.textContent = block.introText;
+      }
+    }
+  }
+
+  if (pricingData) {
+    renderPricing(pricingData, containerSelector);
+  }
+}
+
+/**
+ * Renders a CTA strip block - updates headline and button text/href.
+ * Targets the CTA strip at the given index among all .cta-strip elements.
+ *
+ * @param {Object} block - The CTA strip block from the layout
+ * @param {number} ctaStripIndex - Zero-based index of which CTA strip on the page
+ */
+export function renderCtaStripBlock(block, ctaStripIndex) {
+  if (!block) return;
+
+  const strips = document.querySelectorAll('.cta-strip');
+  const strip = strips[ctaStripIndex || 0];
+  if (!strip) return;
+
+  const headline = strip.querySelector('.cta-strip__headline');
+  if (headline && block.headline) headline.textContent = block.headline;
+
+  const btn = strip.querySelector('.cta-strip__btn');
+  if (btn) {
+    if (block.buttonText) btn.textContent = block.buttonText;
+    if (block.buttonUrl) btn.href = block.buttonUrl;
+  }
+}
+
+/**
+ * Renders a contact section block - updates the email link and text.
+ */
+export function renderContactSectionBlock(block) {
+  if (!block) return;
+
+  if (block.contactEmail) {
+    const emailLink = document.querySelector('.contact__email a');
+    if (emailLink) {
+      emailLink.href = `mailto:${block.contactEmail}`;
+      emailLink.textContent = block.contactEmail;
+    }
+  }
+}
+
+// --- Navigation and footer renderers ---
+
+/**
+ * Renders navigation links from site settings.
+ * Rebuilds both desktop and mobile nav while preserving aria-current on
+ * the link matching the current page path.
+ */
+export function renderNavigation(settings) {
+  if (!settings || !settings.navLinks || settings.navLinks.length === 0) return;
+
+  const currentPath = window.location.pathname;
+  const desktopNav = document.querySelector('.nav__links');
+  const mobileNav = document.querySelector('.nav__overlay-links');
+
+  if (desktopNav) {
+    desktopNav.innerHTML = settings.navLinks.map(link => {
+      const isCurrent = currentPath === link.url || currentPath === `${link.url}/`;
+      const aria = isCurrent ? ' aria-current="page"' : '';
+      return `<a href="${link.url}" class="nav__link"${aria}>${sanitizeHTML(link.label)}</a>`;
+    }).join('');
+  }
+
+  if (mobileNav) {
+    mobileNav.innerHTML = settings.navLinks.map(link => {
+      const isCurrent = currentPath === link.url || currentPath === `${link.url}/`;
+      const aria = isCurrent ? ' aria-current="page"' : '';
+      return `<a href="${link.url}" class="nav__overlay-link"${aria}>${sanitizeHTML(link.label)}</a>`;
+    }).join('');
+  }
+}
+
+/**
+ * Renders footer content from site settings - tagline, links, and copyright.
+ * Preserves the dynamic year span.
+ */
+export function renderFooter(settings) {
+  if (!settings) return;
+
+  if (settings.footerTagline) {
+    const tagline = document.querySelector('.footer__tagline');
+    if (tagline) tagline.textContent = settings.footerTagline;
+  }
+
+  if (settings.footerLinks && settings.footerLinks.length > 0) {
+    const footerNav = document.querySelector('.footer__nav');
+    if (footerNav) {
+      footerNav.innerHTML = settings.footerLinks.map(link =>
+        `<a href="${link.url}" class="footer__link">${sanitizeHTML(link.label)}</a>`
+      ).join('');
+    }
+  }
+
+  if (settings.copyrightText) {
+    const copyEl = document.querySelector('.footer__copy');
+    if (copyEl) {
+      const yearSpan = copyEl.querySelector('#footer-year');
+      const yearText = yearSpan ? yearSpan.textContent : new Date().getFullYear();
+      copyEl.innerHTML = `&copy; <span id="footer-year">${yearText}</span> ${sanitizeHTML(settings.copyrightText)}`;
+    }
+  }
 }
 
 // --- Portfolio renderer ---

@@ -55,6 +55,48 @@ async function fetchFromPayload(collection, params = {}) {
 }
 
 /**
+ * Fetches a Payload global by slug. Globals return the object directly
+ * (not wrapped in { docs: [] }).
+ *
+ * @param {string} slug - Global slug (e.g. 'site-settings')
+ * @returns {Promise<Object>} The global object
+ */
+async function fetchGlobal(slug) {
+  const url = `${API_BASE}/globals/${slug}`;
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
+
+  try {
+    const response = await fetch(url, { signal: controller.signal });
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status} ${response.statusText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    clearTimeout(timeoutId);
+    throw new Error(`Failed to fetch global ${slug}: ${error.message}`);
+  }
+}
+
+/**
+ * Fetches all pages from Payload and returns them keyed by slug.
+ */
+async function fetchPages() {
+  const docs = await fetchFromPayload('pages', { depth: 0 });
+  const pages = {};
+  for (const doc of docs) {
+    if (doc.slug) {
+      pages[doc.slug] = doc;
+    }
+  }
+  return pages;
+}
+
+/**
  * Fetches portfolio entries from Payload.
  */
 async function fetchPortfolio() {
@@ -85,17 +127,10 @@ async function fetchPricingAI() {
 }
 
 /**
- * Fetches site content collections from Payload in parallel.
- * Returns an object matching the shape from cms-api.js getSiteContent().
+ * Fetches site settings global from Payload.
  */
-async function fetchSiteContent() {
-  const [heroes, ctaStrips, services] = await Promise.all([
-    fetchFromPayload('page-heroes'),
-    fetchFromPayload('cta-strips'),
-    fetchFromPayload('service-descriptions')
-  ]);
-
-  return { heroes, ctaStrips, services };
+async function fetchSiteSettings() {
+  return fetchGlobal('site-settings');
 }
 
 // --- Main ---
@@ -103,15 +138,16 @@ async function fetchSiteContent() {
 async function main() {
   console.log(`[${new Date().toISOString()}] Starting fallback content regeneration...`);
 
-  let portfolio, pricingWebsite, pricingAI, siteContent;
+  let pages, siteSettings, portfolio, pricingWebsite, pricingAI;
 
   try {
     // Fetch all content types in parallel
-    [portfolio, pricingWebsite, pricingAI, siteContent] = await Promise.all([
+    [pages, siteSettings, portfolio, pricingWebsite, pricingAI] = await Promise.all([
+      fetchPages(),
+      fetchSiteSettings(),
       fetchPortfolio(),
       fetchPricingWebsite(),
-      fetchPricingAI(),
-      fetchSiteContent()
+      fetchPricingAI()
     ]);
   } catch (error) {
     // Payload is unreachable or returned an error - do NOT overwrite existing fallback
@@ -123,10 +159,11 @@ async function main() {
   // Build the fallback content object
   const fallbackData = {
     generatedAt: new Date().toISOString(),
+    pages,
+    siteSettings,
     portfolio,
     pricingWebsite,
-    pricingAI,
-    siteContent
+    pricingAI
   };
 
   // Write the JSON file
@@ -134,12 +171,11 @@ async function main() {
     const json = JSON.stringify(fallbackData, null, 2);
     await fs.writeFile(OUTPUT_PATH, json, 'utf8');
     console.log(`[${new Date().toISOString()}] Fallback content written to ${OUTPUT_PATH}`);
+    console.log(`  - Pages: ${Object.keys(pages).join(', ')}`);
+    console.log(`  - Site settings: ${siteSettings ? 'yes' : 'no'}`);
     console.log(`  - Portfolio entries: ${portfolio.length}`);
     console.log(`  - Website pricing tiers: ${pricingWebsite.length}`);
     console.log(`  - AI pricing tiers: ${pricingAI.length}`);
-    console.log(`  - Site content heroes: ${siteContent.heroes.length}`);
-    console.log(`  - Site content CTA strips: ${siteContent.ctaStrips.length}`);
-    console.log(`  - Site content services: ${siteContent.services.length}`);
   } catch (error) {
     console.error(`[${new Date().toISOString()}] Failed to write fallback file: ${error.message}`);
     process.exit(1);

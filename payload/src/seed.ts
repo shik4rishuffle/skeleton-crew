@@ -4,100 +4,161 @@ import config from './payload.config'
 async function seed() {
   const payload = await getPayload({ config })
 
-  // --- Page Heroes ---
-  const pageHeroes = [
+  // --- Pages ---
+  const pages = [
     {
-      pageKey: 'homepage' as const,
-      headline: "Websites that don't look like everyone else's.",
-      subheadline: 'Bespoke web design and AI consulting for small UK businesses that refuse to settle.',
+      title: 'Home',
+      slug: 'home',
+      layout: [
+        {
+          blockType: 'heroBlock',
+          headline: "Websites that don't look like everyone else's.",
+          subheadline: 'Bespoke web design and AI consulting for small UK businesses that refuse to settle.',
+          style: 'full',
+          ctas: [
+            { text: 'See our work', url: '/work/', style: 'ghost' },
+            { text: 'Get a quote', url: '/contact/', style: 'ghost' },
+          ],
+          toggleButtonText: 'See what everyone else gives you',
+        },
+        {
+          blockType: 'serviceCardsBlock',
+          cards: [
+            {
+              title: 'Website Builds',
+              body: "We build websites that make your competitors nervous. No templates, no page builders, no compromise. Just a site that looks like yours and nobody else's.",
+            },
+            {
+              title: 'AI Consulting',
+              body: 'We find the repetitive tasks eating your day and replace them with AI that actually works. No hype, no jargon - just fewer hours wasted on things a machine should be doing.',
+            },
+          ],
+        },
+        {
+          blockType: 'portfolioTeaserBlock',
+          sectionHeading: 'Our Work',
+          maxItems: 3,
+          linkText: 'See all work \u2192',
+          linkUrl: '/work/',
+        },
+        {
+          blockType: 'pricingSectionBlock',
+          sectionHeading: 'What It Costs',
+          category: 'website',
+          linkText: 'See all services',
+          linkUrl: '/services/',
+        },
+        {
+          blockType: 'ctaStripBlock',
+          headline: 'Your competitors have a website. Do you?',
+          buttonText: "Let's talk",
+          buttonUrl: '/contact/',
+        },
+      ],
     },
     {
-      pageKey: 'work' as const,
-      headline: 'Our Work',
-      subheadline: 'Real sites for real businesses. No templates, no compromise.',
+      title: 'Work',
+      slug: 'work',
+      layout: [
+        {
+          blockType: 'heroBlock',
+          headline: 'Our Work',
+          subheadline: 'Real sites for real businesses. No templates, no compromise.',
+          style: 'short',
+        },
+        {
+          blockType: 'portfolioGridBlock',
+          showAll: true,
+        },
+      ],
     },
     {
-      pageKey: 'services' as const,
-      headline: 'What We Offer',
-      subheadline: 'Two ways we help small businesses punch above their weight.',
+      title: 'Services',
+      slug: 'services',
+      layout: [
+        {
+          blockType: 'heroBlock',
+          headline: 'What We Offer',
+          subheadline: 'Two ways we help small businesses punch above their weight.',
+          style: 'short',
+        },
+        {
+          blockType: 'pricingSectionBlock',
+          sectionHeading: 'Website Builds',
+          introText: "Every site we build is one of a kind. No templates, no page builders. Just a website that looks like yours and nobody else's.",
+          category: 'website',
+        },
+        {
+          blockType: 'pricingSectionBlock',
+          sectionHeading: 'AI Consulting',
+          introText: 'We find the repetitive tasks eating your day and replace them with AI that actually works.',
+          category: 'ai',
+        },
+        {
+          blockType: 'ctaStripBlock',
+          headline: 'Ready to talk?',
+          buttonText: 'Get in touch',
+          buttonUrl: '/contact/',
+        },
+      ],
+    },
+    {
+      title: 'Contact',
+      slug: 'contact',
+      layout: [
+        {
+          blockType: 'heroBlock',
+          headline: "Let's talk.",
+          style: 'short',
+        },
+        {
+          blockType: 'contactSectionBlock',
+          contactEmail: 'f0xy_shambles@proton.me',
+        },
+      ],
     },
   ]
 
-  for (const hero of pageHeroes) {
+  for (const page of pages) {
     try {
       const existing = await payload.find({
-        collection: 'page-heroes',
-        where: { pageKey: { equals: hero.pageKey } },
+        collection: 'pages',
+        where: { slug: { equals: page.slug } },
         limit: 1,
       })
       if (existing.docs.length > 0) {
-        console.log(`[skip] page-heroes: ${hero.pageKey} already exists`)
+        console.log(`[skip] pages: ${page.slug} already exists`)
         continue
       }
-      await payload.create({ collection: 'page-heroes', data: hero })
-      console.log(`[created] page-heroes: ${hero.pageKey}`)
+      await payload.create({ collection: 'pages', data: page })
+      console.log(`[created] pages: ${page.slug}`)
     } catch (err) {
-      console.error(`[error] page-heroes: ${hero.pageKey} -`, err)
+      console.error(`[error] pages: ${page.slug} -`, err)
     }
   }
 
-  // --- CTA Strips ---
-  const ctaStrips = [
-    {
-      headline: 'Your competitors have a website. Do you?',
-      buttonText: "Let's talk",
-      buttonUrl: '/contact/',
-    },
-  ]
-
-  for (const cta of ctaStrips) {
-    try {
-      const existing = await payload.find({
-        collection: 'cta-strips',
-        where: { headline: { equals: cta.headline } },
-        limit: 1,
-      })
-      if (existing.docs.length > 0) {
-        console.log(`[skip] cta-strips: "${cta.headline}" already exists`)
-        continue
-      }
-      await payload.create({ collection: 'cta-strips', data: cta })
-      console.log(`[created] cta-strips: "${cta.headline}"`)
-    } catch (err) {
-      console.error(`[error] cta-strips: "${cta.headline}" -`, err)
-    }
-  }
-
-  // --- Service Descriptions ---
-  const serviceDescriptions = [
-    {
-      serviceKey: 'websites' as const,
-      title: 'Website Builds',
-      body: "We build websites that make your competitors nervous. No templates, no page builders, no compromise. Just a site that looks like yours and nobody else's.",
-    },
-    {
-      serviceKey: 'ai' as const,
-      title: 'AI Consulting',
-      body: 'We find the repetitive tasks eating your day and replace them with AI that actually works. No hype, no jargon - just fewer hours wasted on things a machine should be doing.',
-    },
-  ]
-
-  for (const service of serviceDescriptions) {
-    try {
-      const existing = await payload.find({
-        collection: 'service-descriptions',
-        where: { serviceKey: { equals: service.serviceKey } },
-        limit: 1,
-      })
-      if (existing.docs.length > 0) {
-        console.log(`[skip] service-descriptions: ${service.serviceKey} already exists`)
-        continue
-      }
-      await payload.create({ collection: 'service-descriptions', data: service })
-      console.log(`[created] service-descriptions: ${service.serviceKey}`)
-    } catch (err) {
-      console.error(`[error] service-descriptions: ${service.serviceKey} -`, err)
-    }
+  // --- Site Settings ---
+  try {
+    await payload.updateGlobal({
+      slug: 'site-settings',
+      data: {
+        navLinks: [
+          { label: 'Work', url: '/work/' },
+          { label: 'Services', url: '/services/' },
+          { label: 'Contact', url: '/contact/' },
+        ],
+        footerTagline: 'Bespoke web design and AI consulting for small businesses that refuse to settle.',
+        footerLinks: [
+          { label: 'Work', url: '/work/' },
+          { label: 'Services', url: '/services/' },
+          { label: 'Contact', url: '/contact/' },
+        ],
+        copyrightText: 'Skeleton Crew',
+      },
+    })
+    console.log('[updated] site-settings')
+  } catch (err) {
+    console.error('[error] site-settings -', err)
   }
 
   // --- Pricing Tiers ---

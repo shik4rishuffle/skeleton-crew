@@ -5,11 +5,10 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 import { Media } from './collections/Media'
-import { PageHeroes } from './collections/PageHeroes'
-import { CtaStrips } from './collections/CtaStrips'
-import { ServiceDescriptions } from './collections/ServiceDescriptions'
+import { Pages } from './collections/Pages'
 import { PricingTiers } from './collections/PricingTiers'
 import { PortfolioEntries } from './collections/PortfolioEntries'
+import { SiteSettings } from './globals/SiteSettings'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -29,12 +28,11 @@ export default buildConfig({
   }),
   collections: [
     Media,
-    PageHeroes,
-    CtaStrips,
-    ServiceDescriptions,
+    Pages,
     PricingTiers,
     PortfolioEntries,
   ],
+  globals: [SiteSettings],
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

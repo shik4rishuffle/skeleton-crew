@@ -172,3 +172,18 @@
 - All Ghost references removed except `btn--ghost` CSS class (standard UI term, not CMS reference)
 **Delegated To:** Architect (Phase A), Frontend (Phases B and C)
 **Next:** Payload infrastructure must be stood up on VPS (separate orchestrator). Once running, seed script can be executed and frontend deployed.
+
+## [2026-04-11] CMS Redesign -- Page-Centric Content Model
+**Status:** Complete
+**Summary:** The operator found the original Payload content model unusable - editing "the homepage" required hunting through 4 separate collections (PageHeroes, CtaStrips, ServiceDescriptions, PricingTiers). The benchmark was Statamic (used for centrifungal website) where you click a page and see everything on it. The Architect designed a page-centric model using Payload's blocks field. Now: click Pages > Homepage, see all sections top-to-bottom (hero, service cards, portfolio, pricing, CTA strip), edit any field right there. Navigation and footer managed via a SiteSettings global. Portfolio and pricing tiers remain as separate collections since they appear on multiple pages.
+**Key Decisions:**
+- 7 block types: Hero, Service Cards, Portfolio Teaser, Portfolio Grid, Pricing Section, CTA Strip, Contact Section
+- Pages collection replaces PageHeroes, CtaStrips, and ServiceDescriptions (all deleted)
+- SiteSettings global added for nav links, footer tagline, footer links, copyright text
+- PricingTiers and PortfolioEntries kept as separate collections (shared data across pages)
+- Frontend JS rewritten: page-centric fetch (getPage + getSiteSettings), block-based renderers, single initPageContent orchestrator
+- HTML files get data-page attribute on body for slug detection
+- Fallback system preserved with new page-keyed JSON shape
+- Block library is shared across all clients - each site uses whichever blocks it needs
+**Delegated To:** Architect (content model design), Frontend (Payload config, seed script, frontend JS)
+**Next:** Commit and push. VPS orchestrator needs to rebuild Payload container, run migration, and re-seed.

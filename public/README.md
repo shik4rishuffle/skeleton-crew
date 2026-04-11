@@ -57,28 +57,30 @@ Payload Admin > Pricing Tiers > Create New.
 - `ctaText` - button label (defaults to "Get started")
 - `ctaUrl` - button link (defaults to "/contact/")
 
-### Site copy
+### Pages
 
-Editable in three Payload collections:
+Payload Admin > Pages. Each page has a `layout` field with content blocks you can add, remove, and reorder.
 
-**Page Heroes** (Payload Admin > Page Heroes):
+**Available block types:**
 
-| pageKey | Where it appears | headline = | subheadline = |
-|---|---|---|---|
-| homepage | Homepage hero | Headline | Subheadline |
-| work | /work hero | Headline | Subheadline |
-| services | /services hero | Headline | Subheadline |
+| Block | What it does |
+|---|---|
+| Hero | Page hero with headline, subheadline, and optional CTA buttons |
+| Service Cards | "What we do" cards with title and body |
+| Portfolio Teaser | Portfolio preview with heading, max items, and "see all" link |
+| Portfolio Grid | Full portfolio grid (work page) |
+| Pricing Section | Pricing tier grid filtered by category, with heading and intro |
+| CTA Strip | Call-to-action banner with headline and button |
+| Contact Section | Contact page email address |
 
-**CTA Strips** (Payload Admin > CTA Strips):
+### Site Settings
 
-Single entry with `headline`, `buttonText`, and `buttonUrl`.
+Payload Admin > Site Settings (under Globals).
 
-**Service Descriptions** (Payload Admin > Service Descriptions):
-
-| serviceKey | Where it appears | title = | body = |
-|---|---|---|---|
-| websites | "What we do" card | Card title | Card body text |
-| ai | "What we do" card | Card title | Card body text |
+- `navLinks` - navigation links shown on every page
+- `footerTagline` - footer description text
+- `footerLinks` - footer navigation links
+- `copyrightText` - copyright holder name (year is auto-generated)
 
 ## Toggle demo
 
@@ -137,7 +139,10 @@ public/
   js/vendor/              - GSAP (self-hosted, no CDN)
   assets/                 - Logo SVGs and favicon
 payload/
-  src/payload.config.ts   - CMS content model (collections and fields)
+  src/payload.config.ts   - CMS config (collections, globals, blocks)
+  src/blocks/             - Block type definitions for the page builder
+  src/collections/        - Payload collections (Pages, PricingTiers, PortfolioEntries, Media)
+  src/globals/            - Payload globals (SiteSettings)
   src/seed.ts             - Seeds CMS with initial content
   Dockerfile              - Production build for Payload container
 scripts/
