@@ -1,11 +1,12 @@
-/* THIS FILE WAS GENERATED AUTOMATICALLY BY NEXT.JS */
+/* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
+/* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
 import type { AdminViewProps } from 'payload'
 
-import configPromise from '@payload-config'
+import config from '@payload-config'
 import { RootPage, generatePageMetadata } from '@payloadcms/next/views'
 import { Metadata } from 'next'
 
-import { importMap } from '../importMap'
+import { importMap } from '../importMap.js'
 
 type Args = {
   params: Promise<{
@@ -17,9 +18,9 @@ type Args = {
 }
 
 export const generateMetadata = ({ params, searchParams }: Args): Promise<Metadata> =>
-  generatePageMetadata({ config: configPromise, params, searchParams })
+  generatePageMetadata({ config, params, searchParams })
 
 const Page = ({ params, searchParams }: Args) =>
-  RootPage({ config: configPromise, importMap, params, searchParams })
+  RootPage({ config, importMap, params, searchParams })
 
 export default Page
