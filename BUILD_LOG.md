@@ -128,3 +128,47 @@
 - Architect recommends: post-deploy seed step, per-client JSON seed files, env vars for credentials, existing idempotency logic preserved
 **Delegated To:** Frontend (T1+T2 config updates), Architect (T4 workflow design)
 **Next:** Operator verifies live site is pulling CMS content. Architect recommendation at AGENTS/architect-output-t4.md ready for review when operator wants to implement the systemic improvement.
+
+## [2026-04-10] CMS Re-evaluation -- Discovery
+**Status:** In Progress
+**Summary:** The operator found Ghost's editing experience unsuitable - it is a blog platform, not a structured content CMS. Every piece of site content is shoehorned into posts/pages with workarounds (tag-based typing, HTML parsing for pricing fields, canonical_url repurposed for portfolio links, publish dates for sort order). The operator wants a self-hosted headless CMS with proper structured content types and labelled fields. The Architect catalogued all content the frontend currently expects (7 site pages, portfolio entries, 6 pricing tiers across 2 categories) and evaluated five self-hosted options: Payload CMS 3, Directus, Strapi v5, KeystoneJS, and Cockpit CMS. Shortlist: Directus (best editing UX, can share existing MySQL), Payload (best developer experience, config-as-code), Cockpit (lightest footprint).
+**Key Decisions:**
+- Ghost confirmed as wrong tool for structured page content
+- Strapi assessed honestly - v5 improved but still weakest editing UX for components, hard to justify given operator's prior negative experience
+- Five discovery questions identified where the answer changes the recommendation
+**Delegated To:** Architect (CMS discovery)
+**Next:** Awaiting operator answers to 5 discovery questions before making recommendation.
+
+## [2026-04-10] CMS Re-evaluation -- Recommendation
+**Status:** Awaiting operator approval
+**Summary:** The Architect recommends Payload CMS 3 on PostgreSQL. The per-client deployment requirement was the deciding factor - Payload's content model lives in TypeScript config files (version-controlled, diffable, deployable), making it trivial to spin up identical CMS instances per client. Directus was the runner-up for its superior editing UX, but Directus stores schema in the database which makes per-client templating a manual export/import process. Payload's admin panel is good enough for non-technical editors given this project's simple content model (labelled text fields, image uploads, checkboxes - no complex nested structures). Infrastructure: adds one Postgres container and one Payload container (~450-500 MB RAM combined), well within the 2.6 GB available. Migration can happen with zero downtime thanks to the existing fallback system.
+**Key Decisions:**
+- Payload CMS 3 recommended over Directus, Strapi, KeystoneJS, and Cockpit
+- PostgreSQL replaces MySQL long-term (MySQL only used by Ghost)
+- Content model: 5 collections (page-heroes, cta-strips, service-descriptions, pricing-tiers, portfolio-entries) plus built-in media
+- Per-client pattern: shared Payload config repo, separate Postgres database + Payload container per client
+**Delegated To:** Architect (final CMS recommendation)
+**Next:** Awaiting operator approval of Payload CMS 3 recommendation before planning migration.
+
+## [2026-04-10] Phase 3 -- Migration Build Plan
+**Status:** Awaiting operator approval
+**Summary:** Architect produced a 15-task migration plan across 3 phases. Phase A builds the Payload CMS application (scaffolding, collections, Dockerfile, access control, seed script). Phase B migrates the frontend (new CMS API client, renderer field name updates, HTML attribute renames, main.js imports, fallback regeneration script). Phase C cleans up (delete Ghost files, update README, dead code sweep, regenerate fallback JSON). Critical path: M-001 through M-009.
+**Key Decisions:**
+- 15 tasks: 5 in Phase A (Architect), 5 in Phase B (Frontend), 5 in Phase C (Frontend)
+- Phase A and VPS infrastructure work can proceed in parallel
+- Frontend migration designed for zero downtime (fallback system covers the switchover)
+- parsePricingHTML hack eliminated entirely - Payload returns structured data
+- data-ghost attributes renamed to data-cms across all HTML files
+**Delegated To:** Architect (task breakdown)
+**Next:** Awaiting operator approval of task index before execution begins.
+
+## [2026-04-10] Phase 4 -- Migration Execution
+**Status:** Complete
+**Summary:** All 15 migration tasks executed across 3 phases. Phase A: Payload CMS application scaffolded in `payload/` directory with 6 collections, Dockerfile, and seed script using corrected content data from the live site. Phase B: Frontend fully migrated - new `cms-api.js` replaces `ghost-api.js`, renderers updated for Payload field names (parsePricingHTML deleted, structured fields used directly), all `data-ghost` attributes renamed to `data-cms` across 3 HTML files, main.js imports updated, fallback regeneration script rewritten for Payload API. Phase C: Ghost files deleted, README rewritten for Payload, dead code swept (3 comment updates in animations.js), test-before-mode.js confirmed clean. Service descriptions `body` field changed from Lexical richText to textarea (plain text) since the frontend is vanilla JS and can't render Lexical JSON.
+**Key Decisions:**
+- Service description body changed from richText to textarea - simpler, no serialization needed
+- Seed data corrected to match live site fallback content (tier names, prices, features all differ from original Ghost seed)
+- Contact page hero dropped from seed data (no CMS hook in the HTML)
+- All Ghost references removed except `btn--ghost` CSS class (standard UI term, not CMS reference)
+**Delegated To:** Architect (Phase A), Frontend (Phases B and C)
+**Next:** Payload infrastructure must be stood up on VPS (separate orchestrator). Once running, seed script can be executed and frontend deployed.

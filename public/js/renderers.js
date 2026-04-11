@@ -1,11 +1,11 @@
-// renderers.js - DOM rendering functions for Ghost CMS content
-// Each function takes Ghost data and updates the corresponding page section.
+// renderers.js - DOM rendering functions for CMS content rendering
+// Each function takes CMS data and updates the corresponding page section.
 
 // --- Helpers ---
 
 /**
  * Strips <script> and <iframe> tags from HTML strings as defence-in-depth.
- * Ghost content is CMS-managed (not user input), but we sanitize anyway.
+ * CMS content is managed (not user input), but we sanitize anyway.
  */
 function sanitizeHTML(html) {
   if (!html) return '';
@@ -14,110 +14,73 @@ function sanitizeHTML(html) {
     .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '');
 }
 
-/**
- * Parses a pricing post's HTML body to extract price and feature list.
- * Uses a cascading strategy for price extraction:
- *   1. Look for an element with [data-price] attribute
- *   2. Fall back to first <p> element content
- *   3. Fall back to "Contact for pricing"
- * Extracts the first <ul> for the feature list.
- */
-function parsePricingHTML(html) {
-  if (!html) {
-    return { price: 'Contact for pricing', features: '' };
-  }
-
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, 'text/html');
-
-  // Price extraction - cascading fallback
-  let price = 'Contact for pricing';
-  const dataPriceEl = doc.querySelector('[data-price]');
-  if (dataPriceEl) {
-    price = dataPriceEl.textContent.trim();
-  } else {
-    const firstP = doc.querySelector('p');
-    if (firstP) {
-      price = firstP.textContent.trim();
-    }
-  }
-
-  // Feature list extraction
-  let features = '';
-  const ul = doc.querySelector('ul');
-  if (ul) {
-    features = ul.innerHTML;
-  }
-
-  return { price, features };
-}
-
 // --- Site content renderer ---
 
 /**
- * Updates elements with data-ghost attributes using CMS page data.
- * Uses textContent for titles/excerpts, innerHTML for HTML bodies.
+ * Updates elements with data-cms attributes using CMS page data.
+ * Expects data shaped as { heroes: [...], ctaStrips: [...], services: [...] }.
+ * Uses textContent for titles/excerpts, innerHTML for body content.
  */
 export function renderSiteContent(data) {
   if (!data) return;
 
   // Hero
-  const hero = data['site-hero'];
+  const hero = data.heroes?.find(h => h.pageKey === 'homepage');
   if (hero) {
-    const heroTitle = document.querySelector('[data-ghost="hero-title"]');
-    const heroSub = document.querySelector('[data-ghost="hero-subtitle"]');
+    const heroTitle = document.querySelector('[data-cms="hero-title"]');
+    const heroSub = document.querySelector('[data-cms="hero-subtitle"]');
     if (heroTitle) {
-      heroTitle.textContent = hero.title || heroTitle.textContent;
+      heroTitle.textContent = hero.headline || heroTitle.textContent;
       // Sync the reveal layer text for the text reveal effect
       const reveal = document.querySelector('.hero__headline-reveal');
       if (reveal) reveal.textContent = heroTitle.textContent;
     }
-    if (heroSub) heroSub.textContent = hero.custom_excerpt || heroSub.textContent;
+    if (heroSub) heroSub.textContent = hero.subheadline || heroSub.textContent;
   }
 
   // CTA strip
-  const cta = data['site-cta-strip'];
+  const cta = data.ctaStrips?.[0];
   if (cta) {
-    const ctaTitle = document.querySelector('[data-ghost="cta-title"]');
-    const ctaButton = document.querySelector('[data-ghost="cta-button"]');
-    if (ctaTitle) ctaTitle.textContent = cta.title || ctaTitle.textContent;
-    if (ctaButton) ctaButton.textContent = cta.custom_excerpt || ctaButton.textContent;
+    const ctaTitle = document.querySelector('[data-cms="cta-title"]');
+    const ctaButton = document.querySelector('[data-cms="cta-button"]');
+    if (ctaTitle) ctaTitle.textContent = cta.headline || ctaTitle.textContent;
+    if (ctaButton) ctaButton.textContent = cta.buttonText || ctaButton.textContent;
   }
 
   // Work page hero
-  const workHero = data['page-work-hero'];
+  const workHero = data.heroes?.find(h => h.pageKey === 'work');
   if (workHero) {
-    const workTitle = document.querySelector('[data-ghost="work-hero-title"]');
-    const workSub = document.querySelector('[data-ghost="work-hero-subtitle"]');
-    if (workTitle) workTitle.textContent = workHero.title || workTitle.textContent;
-    if (workSub) workSub.textContent = workHero.custom_excerpt || workSub.textContent;
+    const workTitle = document.querySelector('[data-cms="work-hero-title"]');
+    const workSub = document.querySelector('[data-cms="work-hero-subtitle"]');
+    if (workTitle) workTitle.textContent = workHero.headline || workTitle.textContent;
+    if (workSub) workSub.textContent = workHero.subheadline || workSub.textContent;
   }
 
   // Services page hero
-  const servicesHero = data['page-services-hero'];
+  const servicesHero = data.heroes?.find(h => h.pageKey === 'services');
   if (servicesHero) {
-    const servicesTitle = document.querySelector('[data-ghost="services-hero-title"]');
-    const servicesSub = document.querySelector('[data-ghost="services-hero-subtitle"]');
-    if (servicesTitle) servicesTitle.textContent = servicesHero.title || servicesTitle.textContent;
-    if (servicesSub) servicesSub.textContent = servicesHero.custom_excerpt || servicesSub.textContent;
+    const servicesTitle = document.querySelector('[data-cms="services-hero-title"]');
+    const servicesSub = document.querySelector('[data-cms="services-hero-subtitle"]');
+    if (servicesTitle) servicesTitle.textContent = servicesHero.headline || servicesTitle.textContent;
+    if (servicesSub) servicesSub.textContent = servicesHero.subheadline || servicesSub.textContent;
   }
 
   // What we do - websites
-  const websites = data['site-what-we-do-websites'];
+  const websites = data.services?.find(s => s.serviceKey === 'websites');
   if (websites) {
-    const title = document.querySelector('[data-ghost="what-we-do-websites-title"]');
-    const body = document.querySelector('[data-ghost="what-we-do-websites-body"]');
+    const title = document.querySelector('[data-cms="what-we-do-websites-title"]');
+    const body = document.querySelector('[data-cms="what-we-do-websites-body"]');
     if (title) title.textContent = websites.title || title.textContent;
-    if (body && websites.html) body.innerHTML = sanitizeHTML(websites.html);
+    if (body && websites.body) body.innerHTML = '<p>' + sanitizeHTML(websites.body) + '</p>';
   }
 
   // What we do - AI
-  const ai = data['site-what-we-do-ai'];
+  const ai = data.services?.find(s => s.serviceKey === 'ai');
   if (ai) {
-    const title = document.querySelector('[data-ghost="what-we-do-ai-title"]');
-    const body = document.querySelector('[data-ghost="what-we-do-ai-body"]');
+    const title = document.querySelector('[data-cms="what-we-do-ai-title"]');
+    const body = document.querySelector('[data-cms="what-we-do-ai-body"]');
     if (title) title.textContent = ai.title || title.textContent;
-    if (body && ai.html) body.innerHTML = sanitizeHTML(ai.html);
+    if (body && ai.body) body.innerHTML = '<p>' + sanitizeHTML(ai.body) + '</p>';
   }
 }
 
@@ -133,7 +96,7 @@ export function renderSiteContentFallback() {
 // --- Portfolio renderer ---
 
 /**
- * Replaces skeleton loader cards with real portfolio cards from Ghost.
+ * Replaces skeleton loader cards with real portfolio cards from CMS.
  * Only renders as many cards as exist - no placeholders.
  */
 export function renderPortfolio(data, containerSelector) {
@@ -143,22 +106,23 @@ export function renderPortfolio(data, containerSelector) {
     return;
   }
 
-  const cards = data.map(post => {
-    const title = post.title || 'Untitled project';
-    const excerpt = post.custom_excerpt || '';
-    const image = post.feature_image || '';
-    const url = post.canonical_url;
+  const cards = data.map(entry => {
+    const title = entry.projectName || 'Untitled project';
+    const excerpt = entry.description || '';
+    const image = entry.screenshot?.url
+      ? `https://cms.skeleton-crew.co.uk${entry.screenshot.url}`
+      : '';
+    const url = entry.liveUrl;
 
-    // Extract brand colour from internal tags (e.g. #brand-ff6b35)
-    const brandTag = post.tags?.find(t => t.slug?.startsWith('hash-brand-'));
-    const brandColor = brandTag ? `#${brandTag.slug.replace('hash-brand-', '')}` : null;
+    // Brand colour is a direct field (e.g. '#ff6b35') or null
+    const brandColor = entry.brandColour || null;
 
-    // Build the link only if canonical_url is present and non-empty
+    // Build the link only if liveUrl is present and non-empty
     const linkHTML = url
       ? `<a href="${url}" class="portfolio__link" target="_blank" rel="noopener">View site</a>`
       : '';
 
-    // Build the image only if feature_image is present
+    // Build the image only if screenshot is present
     const imageHTML = image
       ? `<img src="${image}" alt="${title}" class="portfolio__image" loading="lazy">`
       : '';
@@ -195,9 +159,9 @@ export function renderPortfolioFallback(containerSelector) {
 // --- Pricing renderer ---
 
 /**
- * Replaces skeleton loader cards with pricing tier cards from Ghost.
- * Parses each post's HTML body for price and feature list.
- * Uses the 'featured' boolean for the highlighted tier modifier class.
+ * Replaces skeleton loader cards with pricing tier cards from CMS.
+ * Uses direct fields for price, features array, CTA text, and CTA URL.
+ * Uses the 'isFeatured' boolean for the highlighted tier modifier class.
  */
 export function renderPricing(data, containerSelector) {
   const container = document.querySelector(containerSelector);
@@ -206,11 +170,16 @@ export function renderPricing(data, containerSelector) {
     return;
   }
 
-  const cards = data.map(post => {
-    const title = post.title || 'Untitled tier';
-    const audience = post.custom_excerpt || '';
-    const isFeatured = post.featured === true;
-    const { price, features } = parsePricingHTML(post.html);
+  const cards = data.map(tier => {
+    const title = tier.tierName || 'Untitled tier';
+    const audience = tier.audience || '';
+    const isFeatured = tier.isFeatured === true;
+    const price = tier.price || 'Contact for pricing';
+    const featuresHTML = tier.features?.length
+      ? tier.features.map(f => `<li>${f.feature}</li>`).join('')
+      : '';
+    const ctaText = tier.ctaText || 'Get started';
+    const ctaUrl = tier.ctaUrl || '/contact/';
 
     const featuredClass = isFeatured ? ' pricing__card--featured' : '';
 
@@ -219,8 +188,8 @@ export function renderPricing(data, containerSelector) {
         <h3 class="pricing__name">${title}</h3>
         ${audience ? `<p class="pricing__audience">${audience}</p>` : ''}
         <p class="pricing__price">${price}</p>
-        ${features ? `<ul class="pricing__features">${features}</ul>` : ''}
-        <a href="/contact/" class="btn btn--primary pricing__cta">Get started</a>
+        ${featuresHTML ? `<ul class="pricing__features">${featuresHTML}</ul>` : ''}
+        <a href="${ctaUrl}" class="btn btn--primary pricing__cta">${ctaText}</a>
       </article>
     `;
   });

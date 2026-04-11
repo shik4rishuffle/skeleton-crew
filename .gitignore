@@ -4,3 +4,6 @@
 *.zip
 .agent/
 .claude/
+payload/node_modules/
+payload/.env
+payload/.next/

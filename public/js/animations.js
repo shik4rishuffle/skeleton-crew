@@ -124,7 +124,7 @@ function scrollAnimations() {
 
   // Portfolio and pricing card animations are handled separately via
   // animatePortfolioCards() and animatePricingCards(), called after
-  // Ghost content renders or fallback renders replace the skeleton loaders.
+  // CMS content renders or fallback renders replace the skeleton loaders.
 
   // CTA strip - swipe across screen on scroll
   const ctaStrip = document.querySelector('.cta-strip');
@@ -162,7 +162,7 @@ function scrollAnimations() {
 
 /**
  * Animate portfolio cards after they are rendered into the DOM.
- * Called by main.js via MutationObserver after Ghost/fallback rendering.
+ * Called by main.js via MutationObserver after CMS/fallback rendering.
  * Respects prefers-reduced-motion and requires GSAP + ScrollTrigger.
  */
 export function animatePortfolioCards() {
@@ -190,7 +190,7 @@ export function animatePortfolioCards() {
 
 /**
  * Animate pricing cards after they are rendered into the DOM.
- * Called by main.js via MutationObserver after Ghost/fallback rendering.
+ * Called by main.js via MutationObserver after CMS/fallback rendering.
  * Respects prefers-reduced-motion and requires GSAP + ScrollTrigger.
  */
 export function animatePricingCards() {

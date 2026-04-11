@@ -5,7 +5,7 @@ import { initNav } from './nav.js';
 import { initToggle } from './toggle.js';
 import { initAnimations, animatePortfolioCards, animatePricingCards } from './animations.js';
 import { initContactForm } from './contact-form.js';
-import { initGhostContent, initWorkPageContent, initServicesContent } from './ghost-api.js';
+import { initCMSContent, initWorkPageContent, initServicesContent } from './cms-api.js';
 import { initHeroTilt, initCardTilt, initParallax, initTextReveal } from './effects.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,17 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('footer-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // Ghost CMS content - conditionally load based on which page we are on
-  if (document.querySelector('[data-ghost="portfolio-full"]')) {
+  // CMS content - conditionally load based on which page we are on
+  if (document.querySelector('[data-cms="portfolio-full"]')) {
     initWorkPageContent();
-  } else if (document.querySelector('[data-ghost="pricing-website-full"]')) {
+  } else if (document.querySelector('[data-cms="pricing-website-full"]')) {
     initServicesContent();
-  } else if (document.querySelector('[data-ghost="portfolio"]')) {
-    initGhostContent();
+  } else if (document.querySelector('[data-cms="portfolio"]')) {
+    initCMSContent();
   }
-  // Contact page (and any page without Ghost containers) skips CMS loading
+  // Contact page (and any page without CMS containers) skips CMS loading
 
-  // Observe portfolio and pricing grids for content changes - when Ghost
+  // Observe portfolio and pricing grids for content changes - when CMS
   // data or fallback content replaces skeleton loaders, trigger scroll
   // animations on the new cards.
   observeGridForAnimation('.portfolio__grid', animatePortfolioCards);

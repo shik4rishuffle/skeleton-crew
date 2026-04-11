@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // Fallback Content Regeneration Script
-// Fetches all Ghost CMS content and writes a static JSON fallback file.
+// Fetches all Payload CMS content and writes a static JSON fallback file.
 // Run weekly: 0 3 * * 0 node /srv/skeleton/clients/skeleton-crew/scripts/regenerate-fallback.js
 
 'use strict';
@@ -18,36 +18,22 @@ const path = require('path');
 
 // --- Config ---
 
-const API_BASE = 'https://cms-skeleton-crew.dev.skeleton-crew.co.uk/ghost/api/content';
-const API_KEY = '6a81932590f32d95416a5191a7';
+const API_BASE = 'https://cms.skeleton-crew.co.uk/api';
 const OUTPUT_PATH = path.join(__dirname, '..', 'public', 'js', 'fallback-content.json');
 const FETCH_TIMEOUT = 10000; // 10 seconds per request
-
-// Site content page slugs - must match ghost-api.js getSiteContent()
-const SITE_CONTENT_SLUGS = [
-  'site-hero',
-  'site-cta-strip',
-  'site-about',
-  'site-what-we-do-websites',
-  'site-what-we-do-ai',
-  'page-work-hero',
-  'page-services-hero'
-];
 
 // --- Helpers ---
 
 /**
- * Fetches a Ghost Content API endpoint with a timeout.
- * Returns the parsed response data or throws on failure.
+ * Fetches a Payload REST API collection endpoint with a timeout.
+ * Returns the parsed docs array or throws on failure.
  *
- * @param {string} resource - 'posts' or 'pages'
- * @param {Object} params - Query parameters (filter, include, order, etc.)
- * @param {string} responseKey - Key to extract from JSON response
- * @returns {Promise<Array>} Array of results
+ * @param {string} collection - Collection slug (e.g. 'portfolio-entries')
+ * @param {Object} params - Query parameters (sort, where, depth, etc.)
+ * @returns {Promise<Array>} Array of docs
  */
-async function fetchFromGhost(resource, params = {}, responseKey) {
-  const queryParams = new URLSearchParams({ key: API_KEY, ...params });
-  const url = `${API_BASE}/${resource}/?${queryParams}`;
+async function fetchFromPayload(collection, params = {}) {
+  const url = `${API_BASE}/${collection}?${new URLSearchParams(params)}`;
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
@@ -61,60 +47,55 @@ async function fetchFromGhost(resource, params = {}, responseKey) {
     }
 
     const json = await response.json();
-    return json[responseKey] || [];
+    return json.docs || [];
   } catch (error) {
     clearTimeout(timeoutId);
-    throw new Error(`Failed to fetch ${resource}: ${error.message}`);
+    throw new Error(`Failed to fetch ${collection}: ${error.message}`);
   }
 }
 
 /**
- * Fetches portfolio posts from Ghost.
+ * Fetches portfolio entries from Payload.
  */
 async function fetchPortfolio() {
-  return fetchFromGhost('posts', {
-    filter: 'tag:portfolio',
-    include: 'tags',
-    order: 'published_at desc'
-  }, 'posts');
+  return fetchFromPayload('portfolio-entries', {
+    sort: 'sortOrder',
+    depth: 1
+  });
 }
 
 /**
- * Fetches website pricing tiers from Ghost.
+ * Fetches website pricing tiers from Payload.
  */
 async function fetchPricingWebsite() {
-  return fetchFromGhost('posts', {
-    filter: 'tag:pricing-website',
-    include: 'tags',
-    order: 'published_at asc'
-  }, 'posts');
+  return fetchFromPayload('pricing-tiers', {
+    'where[category][equals]': 'website',
+    sort: 'sortOrder'
+  });
 }
 
 /**
- * Fetches AI pricing tiers from Ghost.
+ * Fetches AI pricing tiers from Payload.
  */
 async function fetchPricingAI() {
-  return fetchFromGhost('posts', {
-    filter: 'tag:pricing-ai',
-    include: 'tags',
-    order: 'published_at asc'
-  }, 'posts');
+  return fetchFromPayload('pricing-tiers', {
+    'where[category][equals]': 'ai',
+    sort: 'sortOrder'
+  });
 }
 
 /**
- * Fetches site content pages from Ghost and indexes them by slug.
+ * Fetches site content collections from Payload in parallel.
+ * Returns an object matching the shape from cms-api.js getSiteContent().
  */
 async function fetchSiteContent() {
-  const pages = await fetchFromGhost('pages', {
-    filter: `slug:[${SITE_CONTENT_SLUGS.join(',')}]`
-  }, 'pages');
+  const [heroes, ctaStrips, services] = await Promise.all([
+    fetchFromPayload('page-heroes'),
+    fetchFromPayload('cta-strips'),
+    fetchFromPayload('service-descriptions')
+  ]);
 
-  // Index by slug for easy lookup
-  const indexed = {};
-  for (const page of pages) {
-    indexed[page.slug] = page;
-  }
-  return indexed;
+  return { heroes, ctaStrips, services };
 }
 
 // --- Main ---
@@ -133,8 +114,8 @@ async function main() {
       fetchSiteContent()
     ]);
   } catch (error) {
-    // Ghost is unreachable or returned an error - do NOT overwrite existing fallback
-    console.warn(`[${new Date().toISOString()}] Ghost API error: ${error.message}`);
+    // Payload is unreachable or returned an error - do NOT overwrite existing fallback
+    console.warn(`[${new Date().toISOString()}] Payload API error: ${error.message}`);
     console.warn('Existing fallback file has NOT been overwritten.');
     process.exit(1);
   }
@@ -156,7 +137,9 @@ async function main() {
     console.log(`  - Portfolio entries: ${portfolio.length}`);
     console.log(`  - Website pricing tiers: ${pricingWebsite.length}`);
     console.log(`  - AI pricing tiers: ${pricingAI.length}`);
-    console.log(`  - Site content pages: ${Object.keys(siteContent).length}`);
+    console.log(`  - Site content heroes: ${siteContent.heroes.length}`);
+    console.log(`  - Site content CTA strips: ${siteContent.ctaStrips.length}`);
+    console.log(`  - Site content services: ${siteContent.services.length}`);
   } catch (error) {
     console.error(`[${new Date().toISOString()}] Failed to write fallback file: ${error.message}`);
     process.exit(1);
