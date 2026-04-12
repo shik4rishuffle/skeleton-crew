@@ -6,6 +6,9 @@ import { PortfolioGridBlock } from '../blocks/PortfolioGridBlock'
 import { PricingSectionBlock } from '../blocks/PricingSectionBlock'
 import { CtaStripBlock } from '../blocks/CtaStripBlock'
 import { ContactSectionBlock } from '../blocks/ContactSectionBlock'
+import { ProductTeaserBlock } from '../blocks/ProductTeaserBlock'
+import { ProductGridBlock } from '../blocks/ProductGridBlock'
+import { TextWithImageBlock } from '../blocks/TextWithImageBlock'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -29,6 +32,9 @@ export const Pages: CollectionConfig = {
         PricingSectionBlock,
         CtaStripBlock,
         ContactSectionBlock,
+        ProductTeaserBlock,
+        ProductGridBlock,
+        TextWithImageBlock,
       ],
     },
   ],
