@@ -43,20 +43,6 @@ Payload Admin > Portfolio Entries > Create New.
 
 Save. The card appears on the homepage and /work page automatically.
 
-### Pricing tiers
-
-Payload Admin > Pricing Tiers > Create New.
-
-- `tierName` - tier display name
-- `category` - "website" or "ai"
-- `audience` - who this tier is for (one sentence)
-- `price` - price text (e.g. "From £499")
-- `features` - add each feature as a separate item
-- `isFeatured` - check for the highlighted/recommended tier
-- `sortOrder` - display order within category (lower numbers first)
-- `ctaText` - button label (defaults to "Get started")
-- `ctaUrl` - button link (defaults to "/contact/")
-
 ### Pages
 
 Payload Admin > Pages. Each page has a `layout` field with content blocks you can add, remove, and reorder.
@@ -69,7 +55,7 @@ Payload Admin > Pages. Each page has a `layout` field with content blocks you ca
 | Service Cards | "What we do" cards with title and body |
 | Portfolio Teaser | Portfolio preview with heading, max items, and "see all" link |
 | Portfolio Grid | Full portfolio grid (work page) |
-| Pricing Section | Pricing tier grid filtered by category, with heading and intro |
+| Pricing Section | Pricing tiers with heading, intro, and embedded tier cards (name, price, features, CTA) |
 | CTA Strip | Call-to-action banner with headline and button |
 | Contact Section | Contact page email address |
 
@@ -141,7 +127,7 @@ public/
 payload/
   src/payload.config.ts   - CMS config (collections, globals, blocks)
   src/blocks/             - Block type definitions for the page builder
-  src/collections/        - Payload collections (Pages, PricingTiers, PortfolioEntries, Media)
+  src/collections/        - Payload collections (Pages, PortfolioEntries, Media)
   src/globals/            - Payload globals (SiteSettings)
   src/seed.ts             - Seeds CMS with initial content
   Dockerfile              - Production build for Payload container

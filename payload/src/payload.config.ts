@@ -6,7 +6,6 @@ import { fileURLToPath } from 'url'
 
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
-import { PricingTiers } from './collections/PricingTiers'
 import { PortfolioEntries } from './collections/PortfolioEntries'
 import { SiteSettings } from './globals/SiteSettings'
 
@@ -29,7 +28,6 @@ export default buildConfig({
   collections: [
     Media,
     Pages,
-    PricingTiers,
     PortfolioEntries,
   ],
   globals: [SiteSettings],

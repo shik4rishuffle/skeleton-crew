@@ -1,6 +1,92 @@
 import { getPayload } from 'payload'
 import config from './payload.config'
 
+// --- Shared pricing tier data (used in multiple pages) ---
+
+const websiteTiers = [
+  {
+    tierName: 'Starter',
+    audience: 'For businesses getting online for the first time.',
+    price: 'From \u00a3499',
+    features: [
+      { feature: 'One-page site that actually looks good' },
+      { feature: 'Mobile-ready from day one' },
+      { feature: 'Live in two weeks' },
+    ],
+    isFeatured: false,
+    ctaText: 'Get started',
+    ctaUrl: '/contact/',
+  },
+  {
+    tierName: 'Growth',
+    audience: 'For businesses ready to stand out.',
+    price: 'From \u00a31,499',
+    features: [
+      { feature: 'Multi-page bespoke design' },
+      { feature: 'Content managed by you' },
+      { feature: 'Built to grow with your business' },
+    ],
+    isFeatured: true,
+    ctaText: 'Get started',
+    ctaUrl: '/contact/',
+  },
+  {
+    tierName: 'Premium',
+    audience: 'For businesses that want the full package.',
+    price: 'From \u00a33,000',
+    features: [
+      { feature: 'Everything in Growth, plus' },
+      { feature: 'Advanced features and integrations' },
+      { feature: 'Priority support' },
+    ],
+    isFeatured: false,
+    ctaText: 'Get started',
+    ctaUrl: '/contact/',
+  },
+]
+
+const aiTiers = [
+  {
+    tierName: 'Audit',
+    audience: 'For businesses wondering where AI fits in.',
+    price: 'From \u00a3299',
+    features: [
+      { feature: 'Full workflow review' },
+      { feature: 'Written report with priorities' },
+      { feature: 'Clear next steps - no fluff' },
+    ],
+    isFeatured: false,
+    ctaText: 'Get started',
+    ctaUrl: '/contact/',
+  },
+  {
+    tierName: 'Build',
+    audience: 'For businesses ready to automate what matters.',
+    price: '\u00a3800 - \u00a32,500',
+    features: [
+      { feature: 'One or two AI workflows built for you' },
+      { feature: 'Integrated into your existing tools' },
+      { feature: 'Trained to work without hand-holding' },
+    ],
+    isFeatured: true,
+    ctaText: 'Get started',
+    ctaUrl: '/contact/',
+  },
+  {
+    tierName: 'Retainer',
+    audience: 'For businesses that want ongoing AI support.',
+    price: '\u00a3300 - \u00a3600/mo',
+    features: [
+      { feature: 'Ongoing maintenance and updates' },
+      { feature: 'New automations as you grow' },
+      { feature: 'Monthly strategy call' },
+    ],
+    isFeatured: false,
+    ctaText: 'Get started',
+    ctaUrl: '/contact/',
+  },
+]
+
 async function seed() {
   const payload = await getPayload({ config })
 
@@ -12,6 +98,7 @@ async function seed() {
       layout: [
         {
           blockType: 'heroBlock',
+          blockName: "Websites that don't look like everyone else's.",
           headline: "Websites that don't look like everyone else's.",
           subheadline: 'Bespoke web design and AI consulting for small UK businesses that refuse to settle.',
           style: 'full',
@@ -23,6 +110,7 @@ async function seed() {
         },
         {
           blockType: 'serviceCardsBlock',
+          blockName: 'What We Do',
           cards: [
             {
               title: 'Website Builds',
@@ -36,6 +124,7 @@ async function seed() {
         },
         {
           blockType: 'portfolioTeaserBlock',
+          blockName: 'Our Work',
           sectionHeading: 'Our Work',
           maxItems: 3,
           linkText: 'See all work \u2192',
@@ -43,13 +132,15 @@ async function seed() {
         },
         {
           blockType: 'pricingSectionBlock',
+          blockName: 'What It Costs',
           sectionHeading: 'What It Costs',
-          category: 'website',
+          tiers: websiteTiers,
           linkText: 'See all services',
           linkUrl: '/services/',
         },
         {
           blockType: 'ctaStripBlock',
+          blockName: 'Your competitors have a website. Do you?',
           headline: 'Your competitors have a website. Do you?',
           buttonText: "Let's talk",
           buttonUrl: '/contact/',
@@ -62,12 +153,14 @@ async function seed() {
       layout: [
         {
           blockType: 'heroBlock',
+          blockName: 'Our Work',
           headline: 'Our Work',
           subheadline: 'Real sites for real businesses. No templates, no compromise.',
           style: 'short',
         },
         {
           blockType: 'portfolioGridBlock',
+          blockName: 'Portfolio Grid',
           showAll: true,
         },
       ],
@@ -78,24 +171,28 @@ async function seed() {
       layout: [
         {
           blockType: 'heroBlock',
+          blockName: 'What We Offer',
           headline: 'What We Offer',
           subheadline: 'Two ways we help small businesses punch above their weight.',
           style: 'short',
         },
         {
           blockType: 'pricingSectionBlock',
+          blockName: 'Website Builds',
           sectionHeading: 'Website Builds',
           introText: "Every site we build is one of a kind. No templates, no page builders. Just a website that looks like yours and nobody else's.",
-          category: 'website',
+          tiers: websiteTiers,
         },
         {
           blockType: 'pricingSectionBlock',
+          blockName: 'AI Consulting',
           sectionHeading: 'AI Consulting',
           introText: 'We find the repetitive tasks eating your day and replace them with AI that actually works.',
-          category: 'ai',
+          tiers: aiTiers,
         },
         {
           blockType: 'ctaStripBlock',
+          blockName: 'Ready to talk?',
           headline: 'Ready to talk?',
           buttonText: 'Get in touch',
           buttonUrl: '/contact/',
@@ -108,11 +205,13 @@ async function seed() {
       layout: [
         {
           blockType: 'heroBlock',
+          blockName: "Let's talk.",
           headline: "Let's talk.",
           style: 'short',
         },
         {
           blockType: 'contactSectionBlock',
+          blockName: 'Contact Email',
           contactEmail: 'f0xy_shambles@proton.me',
         },
       ],
@@ -159,125 +258,6 @@ async function seed() {
     console.log('[updated] site-settings')
   } catch (err) {
     console.error('[error] site-settings -', err)
-  }
-
-  // --- Pricing Tiers ---
-  const pricingTiers = [
-    // Website tiers
-    {
-      tierName: 'Starter',
-      category: 'website' as const,
-      audience: 'For businesses getting online for the first time.',
-      price: 'From \u00a3499',
-      features: [
-        { feature: 'One-page site that actually looks good' },
-        { feature: 'Mobile-ready from day one' },
-        { feature: 'Live in two weeks' },
-      ],
-      isFeatured: false,
-      sortOrder: 1,
-      ctaText: 'Get started',
-      ctaUrl: '/contact/',
-    },
-    {
-      tierName: 'Growth',
-      category: 'website' as const,
-      audience: 'For businesses ready to stand out.',
-      price: 'From \u00a31,499',
-      features: [
-        { feature: 'Multi-page bespoke design' },
-        { feature: 'Content managed by you' },
-        { feature: 'Built to grow with your business' },
-      ],
-      isFeatured: true,
-      sortOrder: 2,
-      ctaText: 'Get started',
-      ctaUrl: '/contact/',
-    },
-    {
-      tierName: 'Premium',
-      category: 'website' as const,
-      audience: 'For businesses that want the full package.',
-      price: 'From \u00a33,000',
-      features: [
-        { feature: 'Everything in Growth, plus' },
-        { feature: 'Advanced features and integrations' },
-        { feature: 'Priority support' },
-      ],
-      isFeatured: false,
-      sortOrder: 3,
-      ctaText: 'Get started',
-      ctaUrl: '/contact/',
-    },
-    // AI tiers
-    {
-      tierName: 'Audit',
-      category: 'ai' as const,
-      audience: 'For businesses wondering where AI fits in.',
-      price: 'From \u00a3299',
-      features: [
-        { feature: 'Full workflow review' },
-        { feature: 'Written report with priorities' },
-        { feature: 'Clear next steps - no fluff' },
-      ],
-      isFeatured: false,
-      sortOrder: 1,
-      ctaText: 'Get started',
-      ctaUrl: '/contact/',
-    },
-    {
-      tierName: 'Build',
-      category: 'ai' as const,
-      audience: 'For businesses ready to automate what matters.',
-      price: '\u00a3800 - \u00a32,500',
-      features: [
-        { feature: 'One or two AI workflows built for you' },
-        { feature: 'Integrated into your existing tools' },
-        { feature: 'Trained to work without hand-holding' },
-      ],
-      isFeatured: true,
-      sortOrder: 2,
-      ctaText: 'Get started',
-      ctaUrl: '/contact/',
-    },
-    {
-      tierName: 'Retainer',
-      category: 'ai' as const,
-      audience: 'For businesses that want ongoing AI support.',
-      price: '\u00a3300 - \u00a3600/mo',
-      features: [
-        { feature: 'Ongoing maintenance and updates' },
-        { feature: 'New automations as you grow' },
-        { feature: 'Monthly strategy call' },
-      ],
-      isFeatured: false,
-      sortOrder: 3,
-      ctaText: 'Get started',
-      ctaUrl: '/contact/',
-    },
-  ]
-
-  for (const tier of pricingTiers) {
-    try {
-      const existing = await payload.find({
-        collection: 'pricing-tiers',
-        where: {
-          and: [
-            { tierName: { equals: tier.tierName } },
-            { category: { equals: tier.category } },
-          ],
-        },
-        limit: 1,
-      })
-      if (existing.docs.length > 0) {
-        console.log(`[skip] pricing-tiers: ${tier.tierName} (${tier.category}) already exists`)
-        continue
-      }
-      await payload.create({ collection: 'pricing-tiers', data: tier })
-      console.log(`[created] pricing-tiers: ${tier.tierName} (${tier.category})`)
-    } catch (err) {
-      console.error(`[error] pricing-tiers: ${tier.tierName} (${tier.category}) -`, err)
-    }
   }
 
   // --- Portfolio Entries ---

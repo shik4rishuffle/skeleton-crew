@@ -107,26 +107,6 @@ async function fetchPortfolio() {
 }
 
 /**
- * Fetches website pricing tiers from Payload.
- */
-async function fetchPricingWebsite() {
-  return fetchFromPayload('pricing-tiers', {
-    'where[category][equals]': 'website',
-    sort: 'sortOrder'
-  });
-}
-
-/**
- * Fetches AI pricing tiers from Payload.
- */
-async function fetchPricingAI() {
-  return fetchFromPayload('pricing-tiers', {
-    'where[category][equals]': 'ai',
-    sort: 'sortOrder'
-  });
-}
-
-/**
  * Fetches site settings global from Payload.
  */
 async function fetchSiteSettings() {
@@ -138,16 +118,15 @@ async function fetchSiteSettings() {
 async function main() {
   console.log(`[${new Date().toISOString()}] Starting fallback content regeneration...`);
 
-  let pages, siteSettings, portfolio, pricingWebsite, pricingAI;
+  let pages, siteSettings, portfolio;
 
   try {
     // Fetch all content types in parallel
-    [pages, siteSettings, portfolio, pricingWebsite, pricingAI] = await Promise.all([
+    // Pricing tiers are embedded in page blocks, no separate fetch needed
+    [pages, siteSettings, portfolio] = await Promise.all([
       fetchPages(),
       fetchSiteSettings(),
       fetchPortfolio(),
-      fetchPricingWebsite(),
-      fetchPricingAI()
     ]);
   } catch (error) {
     // Payload is unreachable or returned an error - do NOT overwrite existing fallback
@@ -162,8 +141,6 @@ async function main() {
     pages,
     siteSettings,
     portfolio,
-    pricingWebsite,
-    pricingAI
   };
 
   // Write the JSON file
@@ -174,8 +151,6 @@ async function main() {
     console.log(`  - Pages: ${Object.keys(pages).join(', ')}`);
     console.log(`  - Site settings: ${siteSettings ? 'yes' : 'no'}`);
     console.log(`  - Portfolio entries: ${portfolio.length}`);
-    console.log(`  - Website pricing tiers: ${pricingWebsite.length}`);
-    console.log(`  - AI pricing tiers: ${pricingAI.length}`);
   } catch (error) {
     console.error(`[${new Date().toISOString()}] Failed to write fallback file: ${error.message}`);
     process.exit(1);

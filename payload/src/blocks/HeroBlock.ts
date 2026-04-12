@@ -10,14 +10,29 @@ export const HeroBlock: Block = {
       { label: 'Full (homepage)', value: 'full' },
       { label: 'Short (subpage)', value: 'short' },
     ]},
-    { name: 'ctas', type: 'array', fields: [
-      { name: 'text', type: 'text', required: true },
-      { name: 'url', type: 'text', required: true },
-      { name: 'style', type: 'select', defaultValue: 'ghost', options: [
-        { label: 'Ghost', value: 'ghost' },
-        { label: 'Primary', value: 'primary' },
-      ]},
-    ]},
-    { name: 'toggleButtonText', type: 'text', admin: { description: 'If set, shows the before/after toggle button. Homepage only.' } },
+    {
+      name: 'ctas',
+      type: 'array',
+      labels: { singular: 'Button', plural: 'Buttons' },
+      admin: {
+        condition: (data, siblingData) => siblingData?.style === 'full',
+      },
+      fields: [
+        { name: 'text', type: 'text', required: true },
+        { name: 'url', type: 'text', required: true },
+        { name: 'style', type: 'select', defaultValue: 'ghost', options: [
+          { label: 'Ghost', value: 'ghost' },
+          { label: 'Primary', value: 'primary' },
+        ]},
+      ],
+    },
+    {
+      name: 'toggleButtonText',
+      type: 'text',
+      admin: {
+        description: 'If set, shows the before/after toggle button. Homepage only.',
+        condition: (data, siblingData) => siblingData?.style === 'full',
+      },
+    },
   ],
 }

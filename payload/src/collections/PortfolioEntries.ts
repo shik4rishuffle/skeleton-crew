@@ -32,6 +32,10 @@ export const PortfolioEntries: CollectionConfig = {
     {
       name: 'brandColour',
       type: 'text',
+      admin: {
+        placeholder: '#ff6b35',
+        description: 'Hex colour code for the card accent (e.g. #ff6b35)',
+      },
     },
     {
       name: 'sortOrder',

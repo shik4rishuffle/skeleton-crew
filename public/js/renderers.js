@@ -131,32 +131,33 @@ export function renderPortfolioGridBlock(block, portfolioData) {
 
 /**
  * Renders a pricing section block - updates the section heading and intro
- * text near the target container, then delegates to renderPricing.
+ * text, then renders tier cards from the block's embedded tiers array.
+ * Targets the pricing grid at the given index among all .pricing__grid elements.
  *
  * @param {Object} block - The pricing section block from the layout
- * @param {Array} pricingData - Pricing tier docs from the API
- * @param {string} containerSelector - data-cms selector for the pricing grid
+ * @param {number} pricingSectionIndex - Zero-based index of which pricing grid on the page
  */
-export function renderPricingSectionBlock(block, pricingData, containerSelector) {
+export function renderPricingSectionBlock(block, pricingSectionIndex) {
   if (!block) return;
 
-  const container = document.querySelector(containerSelector);
-  if (container) {
-    const section = container.closest('section');
-    if (section) {
-      if (block.sectionHeading) {
-        const heading = section.querySelector('.section__heading');
-        if (heading) heading.textContent = block.sectionHeading;
-      }
-      if (block.introText) {
-        const intro = section.querySelector('.services__intro');
-        if (intro) intro.textContent = block.introText;
-      }
+  const grids = document.querySelectorAll('.pricing__grid');
+  const container = grids[pricingSectionIndex || 0];
+  if (!container) return;
+
+  const section = container.closest('section');
+  if (section) {
+    if (block.sectionHeading) {
+      const heading = section.querySelector('.section__heading');
+      if (heading) heading.textContent = block.sectionHeading;
+    }
+    if (block.introText) {
+      const intro = section.querySelector('.services__intro');
+      if (intro) intro.textContent = block.introText;
     }
   }
 
-  if (pricingData) {
-    renderPricing(pricingData, containerSelector);
+  if (block.tiers && block.tiers.length > 0) {
+    renderPricing(block.tiers, container);
   }
 }
 
@@ -327,14 +328,17 @@ export function renderPortfolioFallback(containerSelector) {
 // --- Pricing renderer ---
 
 /**
- * Replaces skeleton loader cards with pricing tier cards from CMS.
+ * Replaces skeleton loader cards with pricing tier cards.
+ * Accepts either a DOM element or a CSS selector string for the container.
  * Uses direct fields for price, features array, CTA text, and CTA URL.
  * Uses the 'isFeatured' boolean for the highlighted tier modifier class.
  */
-export function renderPricing(data, containerSelector) {
-  const container = document.querySelector(containerSelector);
+export function renderPricing(data, containerOrSelector) {
+  const container = typeof containerOrSelector === 'string'
+    ? document.querySelector(containerOrSelector)
+    : containerOrSelector;
   if (!container || !data || data.length === 0) {
-    renderPricingFallback(containerSelector);
+    renderPricingFallback(container);
     return;
   }
 
@@ -367,10 +371,13 @@ export function renderPricing(data, containerSelector) {
 
 /**
  * Fallback content when pricing data is unavailable.
+ * Accepts either a DOM element or a CSS selector string.
  * Shows approximate website tiers based on the project brief.
  */
-export function renderPricingFallback(containerSelector) {
-  const container = document.querySelector(containerSelector);
+export function renderPricingFallback(containerOrSelector) {
+  const container = typeof containerOrSelector === 'string'
+    ? document.querySelector(containerOrSelector)
+    : containerOrSelector;
   if (!container) return;
 
   container.innerHTML = `
@@ -410,47 +417,3 @@ export function renderPricingFallback(containerSelector) {
   `;
 }
 
-/**
- * Fallback content when AI pricing data is unavailable.
- * Shows approximate AI consulting tiers based on the project brief.
- */
-export function renderPricingAIFallback(containerSelector) {
-  const container = document.querySelector(containerSelector);
-  if (!container) return;
-
-  container.innerHTML = `
-    <article class="pricing__card">
-      <h3 class="pricing__name">Audit</h3>
-      <p class="pricing__audience">For businesses wondering where AI fits in.</p>
-      <p class="pricing__price">From &pound;299</p>
-      <ul class="pricing__features">
-        <li>Full workflow review</li>
-        <li>Written report with priorities</li>
-        <li>Clear next steps - no fluff</li>
-      </ul>
-      <a href="/contact/" class="btn btn--primary pricing__cta">Get started</a>
-    </article>
-    <article class="pricing__card pricing__card--featured">
-      <h3 class="pricing__name">Build</h3>
-      <p class="pricing__audience">For businesses ready to automate what matters.</p>
-      <p class="pricing__price">&pound;800 - &pound;2,500</p>
-      <ul class="pricing__features">
-        <li>One or two AI workflows built for you</li>
-        <li>Integrated into your existing tools</li>
-        <li>Trained to work without hand-holding</li>
-      </ul>
-      <a href="/contact/" class="btn btn--primary pricing__cta">Get started</a>
-    </article>
-    <article class="pricing__card">
-      <h3 class="pricing__name">Retainer</h3>
-      <p class="pricing__audience">For businesses that want ongoing AI support.</p>
-      <p class="pricing__price">&pound;300 - &pound;600/mo</p>
-      <ul class="pricing__features">
-        <li>Ongoing maintenance and updates</li>
-        <li>New automations as you grow</li>
-        <li>Monthly strategy call</li>
-      </ul>
-      <a href="/contact/" class="btn btn--primary pricing__cta">Get started</a>
-    </article>
-  `;
-}

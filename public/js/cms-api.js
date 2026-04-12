@@ -11,11 +11,8 @@ import {
   renderContactSectionBlock,
   renderNavigation,
   renderFooter,
-  renderPortfolio,
   renderPortfolioFallback,
-  renderPricing,
   renderPricingFallback,
-  renderPricingAIFallback
 } from './renderers.js';
 
 // --- Config ---
@@ -180,16 +177,6 @@ export async function getPortfolio(limit) {
   return fetchFromPayload('portfolio-entries', params);
 }
 
-/**
- * Fetches pricing tiers filtered by category, ordered by sortOrder.
- */
-export async function getPricingByCategory(category) {
-  return fetchFromPayload('pricing-tiers', {
-    'where[category][equals]': category,
-    sort: 'sortOrder'
-  });
-}
-
 // --- Fallback JSON loader ---
 
 // Cached fallback JSON - loaded once, reused for all content types
@@ -279,6 +266,7 @@ export function initPageContent(slug) {
  */
 async function renderBlocks(blocks, fallbackData = null) {
   let ctaStripIndex = 0;
+  let pricingSectionIndex = 0;
 
   for (const block of blocks) {
     switch (block.blockType) {
@@ -302,13 +290,10 @@ async function renderBlocks(blocks, fallbackData = null) {
         break;
       }
 
-      case 'pricingSectionBlock': {
-        const category = block.category || 'website';
-        const containerSelector = findPricingContainer(category);
-        const pricingData = await fetchPricingWithFallback(category, fallbackData);
-        renderPricingSectionBlock(block, pricingData, containerSelector);
+      case 'pricingSectionBlock':
+        renderPricingSectionBlock(block, pricingSectionIndex);
+        pricingSectionIndex++;
         break;
-      }
 
       case 'ctaStripBlock':
         renderCtaStripBlock(block, ctaStripIndex);
@@ -342,55 +327,22 @@ async function fetchPortfolioWithFallback(fallbackData) {
 }
 
 /**
- * Fetches pricing data by category from the API, falling back to static JSON.
- */
-async function fetchPricingWithFallback(category, fallbackData) {
-  const data = await getPricingByCategory(category);
-  if (data) return data;
-
-  // Try fallback JSON
-  const fallbackKey = category === 'ai' ? 'pricingAI' : 'pricingWebsite';
-  if (fallbackData && fallbackData[fallbackKey]) return fallbackData[fallbackKey];
-
-  const fallback = await loadFallbackJSON();
-  if (fallback && fallback[fallbackKey]) return fallback[fallbackKey];
-
-  return null;
-}
-
-/**
- * Determines the correct data-cms selector for a pricing grid based on
- * category and which containers exist on the current page.
- */
-function findPricingContainer(category) {
-  if (category === 'ai') {
-    return '[data-cms="pricing-ai-full"]';
-  }
-
-  // Website pricing - check which container exists on this page
-  if (document.querySelector('[data-cms="pricing-website-full"]')) {
-    return '[data-cms="pricing-website-full"]';
-  }
-  return '[data-cms="pricing-website"]';
-}
-
-/**
  * Last-resort fallback when neither the API nor fallback JSON are available.
  * Renders hardcoded content into known containers based on the page slug.
  */
 function renderHardcodedFallbacks(slug) {
+  const pricingGrids = document.querySelectorAll('.pricing__grid');
   switch (slug) {
     case 'home':
       renderPortfolioFallback('[data-cms="portfolio"]');
-      renderPricingFallback('[data-cms="pricing-website"]');
+      if (pricingGrids[0]) renderPricingFallback(pricingGrids[0]);
       break;
     case 'work':
       renderPortfolioFallback('[data-cms="portfolio-full"]');
       break;
     case 'services':
-      renderPricingFallback('[data-cms="pricing-website-full"]');
-      renderPricingAIFallback('[data-cms="pricing-ai-full"]');
+      if (pricingGrids[0]) renderPricingFallback(pricingGrids[0]);
+      if (pricingGrids[1]) renderPricingFallback(pricingGrids[1]);
       break;
-    // Contact page has no dynamic grids - nothing to fall back on
   }
 }
