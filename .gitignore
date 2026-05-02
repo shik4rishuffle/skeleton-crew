@@ -7,3 +7,4 @@
 payload/node_modules/
 payload/.env
 payload/.next/
+payload/tsconfig.tsbuildinfo
