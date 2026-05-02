@@ -10,8 +10,12 @@ import { Pages } from './collections/Pages'
 import { PortfolioEntries } from './collections/PortfolioEntries'
 import { ProductCategories } from './collections/ProductCategories'
 import { Products } from './collections/Products'
+import { Users } from './collections/Users'
 import { ShopSettings } from './globals/ShopSettings'
 import { SiteSettings } from './globals/SiteSettings'
+
+// Better Justice - boot-time Stripe SDK initialisation. Throws if STRIPE_SECRET_KEY is missing.
+import './lib/bj/stripe'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -37,6 +41,7 @@ export default buildConfig({
     PortfolioEntries,
     ProductCategories,
     Products,
+    Users,
   ],
   globals: [SiteSettings, ShopSettings],
   typescript: {
