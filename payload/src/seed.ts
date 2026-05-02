@@ -229,7 +229,7 @@ async function seed() {
         console.log(`[skip] pages: ${page.slug} already exists`)
         continue
       }
-      await payload.create({ collection: 'pages', data: page })
+      await payload.create({ collection: 'pages', data: page as never })
       console.log(`[created] pages: ${page.slug}`)
     } catch (err) {
       console.error(`[error] pages: ${page.slug} -`, err)

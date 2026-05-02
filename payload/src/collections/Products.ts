@@ -4,9 +4,9 @@ export const Products: CollectionConfig = {
   slug: 'products',
   admin: {
     useAsTitle: 'name',
-    defaultSort: 'sortOrder',
     group: 'Shop',
   },
+  defaultSort: 'sortOrder',
   access: {
     read: () => true,
   },
@@ -126,7 +126,6 @@ export const Products: CollectionConfig = {
     },
     // --- Technical Details (collapsed) ---
     {
-      name: 'technicalDetails',
       type: 'collapsible',
       label: 'Technical Details',
       admin: {

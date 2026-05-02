@@ -4,9 +4,9 @@ export const ProductCategories: CollectionConfig = {
   slug: 'product-categories',
   admin: {
     useAsTitle: 'name',
-    defaultSort: 'sortOrder',
     group: 'Shop',
   },
+  defaultSort: 'sortOrder',
   access: {
     read: () => true,
   },

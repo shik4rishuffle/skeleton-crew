@@ -4,10 +4,10 @@ export const Orders: CollectionConfig = {
   slug: 'orders',
   admin: {
     useAsTitle: 'orderRef',
-    defaultSort: '-createdAt',
     group: 'Shop',
     listSearchableFields: ['orderRef', 'customerName', 'customerEmail'],
   },
+  defaultSort: '-createdAt',
   access: {
     read: ({ req }) => Boolean(req.user),
     create: ({ req }) => Boolean(req.user),
