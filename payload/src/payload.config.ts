@@ -18,7 +18,12 @@ const dirname = path.dirname(filename)
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
-  cors: [process.env.NEXT_PUBLIC_SERVER_URL, process.env.POTTERY_FRONTEND_URL].filter(Boolean) as string[],
+  cors: [
+    'https://skeleton-crew.co.uk',
+    'https://www.skeleton-crew.co.uk',
+    process.env.NEXT_PUBLIC_SERVER_URL,
+    process.env.POTTERY_FRONTEND_URL,
+  ].filter(Boolean) as string[],
   admin: {
     importMap: {
       baseDir: path.resolve(dirname),
