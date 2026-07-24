@@ -7,7 +7,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "seed": "npx tsx src/seed.ts"
+    "seed": "npx tsx src/seed.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:backend": "vitest run --project backend",
+    "test:frontend": "vitest run --project frontend",
+    "test:smoke": "vitest run tests/smoke.test.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.0.0",
@@ -18,12 +23,16 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sharp": "^0.33.0",
-    "stripe": "^17.7.0"
+    "stripe": "~19.1.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "@types/pg": "^8.11.10",
     "@types/react": "^19.0.0",
+    "jsdom": "^25.0.1",
+    "pg": "^8.13.1",
     "tsx": "^4.0.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
   }
 }

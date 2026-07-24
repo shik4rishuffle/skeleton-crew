@@ -1,0 +1,39 @@
+# Test Postgres for the Vitest harness (TASK-010 / QA-01).
+#
+# Pinned to postgres:16-alpine. Flynn's gate decision: default to PG 16, with
+# the assumption that the VPS shared-Postgres container will move to (or
+# already runs) PG 16. If the VPS is on a different major version, change
+# the image tag here AND update the matching CI service container in
+# TASK-050. Vitest's `tests/helpers/db.ts` is connection-string-agnostic, so
+# nothing else has to change.
+#
+# Port 54329 chosen to avoid colliding with the dev Postgres on 5432.
+#
+# `tmpfs` for the data dir keeps the container ephemeral - no volume to
+# clean up between runs. Faster boot too.
+#
+# Usage:
+#   docker compose -f docker-compose.test.yml up -d
+#   npm run test
+#   docker compose -f docker-compose.test.yml down
+#
+# `tests/helpers/db.ts` reads `process.env.TEST_DATABASE_URI` and falls back
+# to `postgresql://test:test@localhost:54329/bj_test` if unset.
+
+services:
+  postgres-test:
+    image: postgres:16-alpine
+    container_name: bj-postgres-test
+    environment:
+      POSTGRES_DB: bj_test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+    ports:
+      - '54329:5432'
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U test -d bj_test']
+      interval: 2s
+      timeout: 3s
+      retries: 20
