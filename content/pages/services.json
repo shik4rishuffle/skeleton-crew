@@ -1,0 +1,157 @@
+{
+  "title": "Services",
+  "seo": {
+    "metaDescription": "Web design and AI consulting packages for small UK businesses. No jargon, just results."
+  },
+  "blocks": [
+    {
+      "_template": "pageHeading",
+      "heading": "What We Offer",
+      "subheading": "Two ways we help small businesses punch above their weight.",
+      "align": "left"
+    },
+    {
+      "_template": "pricing",
+      "anchor": "websites",
+      "heading": "Website Builds",
+      "intro": "Every site we build is one of a kind. No templates, no page builders. Just a website that looks like yours and nobody else's.",
+      "tiers": [
+        {
+          "name": "Starter",
+          "audience": "For businesses getting online for the first time.",
+          "price": "From £499",
+          "features": [
+            {
+              "text": "One-page site that actually looks good"
+            },
+            {
+              "text": "Mobile-ready from day one"
+            },
+            {
+              "text": "Live in two weeks"
+            }
+          ],
+          "featured": false,
+          "ctaLabel": "Get started",
+          "ctaUrl": "/contact"
+        },
+        {
+          "name": "Growth",
+          "audience": "For businesses ready to stand out.",
+          "price": "From £1,499",
+          "features": [
+            {
+              "text": "Multi-page bespoke design"
+            },
+            {
+              "text": "Content managed by you"
+            },
+            {
+              "text": "Built to grow with your business"
+            }
+          ],
+          "featured": true,
+          "ctaLabel": "Get started",
+          "ctaUrl": "/contact"
+        },
+        {
+          "name": "Premium",
+          "audience": "For businesses that want the full package.",
+          "price": "From £3,000",
+          "features": [
+            {
+              "text": "Everything in Growth, plus"
+            },
+            {
+              "text": "Advanced features and integrations"
+            },
+            {
+              "text": "Priority support"
+            }
+          ],
+          "featured": false,
+          "ctaLabel": "Get started",
+          "ctaUrl": "/contact"
+        }
+      ]
+    },
+    {
+      "_template": "pricing",
+      "anchor": "ai",
+      "heading": "AI Consulting",
+      "intro": "We find the repetitive tasks eating your day and replace them with AI that actually works.",
+      "tiers": [
+        {
+          "name": "Audit",
+          "audience": "For businesses wondering where AI fits in.",
+          "price": "From £299",
+          "features": [
+            {
+              "text": "Full workflow review"
+            },
+            {
+              "text": "Written report with priorities"
+            },
+            {
+              "text": "Clear next steps - no fluff"
+            }
+          ],
+          "featured": false,
+          "ctaLabel": "Get started",
+          "ctaUrl": "/contact"
+        },
+        {
+          "name": "Build",
+          "audience": "For businesses ready to automate what matters.",
+          "price": "£800 - £2,500",
+          "features": [
+            {
+              "text": "One or two AI workflows built for you"
+            },
+            {
+              "text": "Integrated into your existing tools"
+            },
+            {
+              "text": "Trained to work without hand-holding"
+            }
+          ],
+          "featured": true,
+          "ctaLabel": "Get started",
+          "ctaUrl": "/contact"
+        },
+        {
+          "name": "Retainer",
+          "audience": "For businesses that want ongoing AI support.",
+          "price": "£300 - £600",
+          "period": "/mo",
+          "features": [
+            {
+              "text": "Ongoing maintenance and updates"
+            },
+            {
+              "text": "New automations as you grow"
+            },
+            {
+              "text": "Monthly strategy call"
+            }
+          ],
+          "featured": false,
+          "ctaLabel": "Get started",
+          "ctaUrl": "/contact"
+        }
+      ]
+    },
+    {
+      "_template": "cta",
+      "style": "strip",
+      "heading": "Ready to talk?",
+      "buttons": [
+        {
+          "label": "Get in touch",
+          "url": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ]
+}

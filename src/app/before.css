@@ -1,0 +1,52 @@
+/* ==========================================================================
+   Before mode: the generic template look the theirs/ours toggle swaps in.
+   Because every block reads tokens, most of the transformation is token
+   overrides. The handful of rules below strip the punk details the tokens
+   cannot reach. Scoped under body.before-mode; the pill is left alone.
+   ========================================================================== */
+body.before-mode {
+  --color-primary: #003087;
+  --color-primary-contrast: #ffffff;
+  --color-accent: #003087;
+  --color-accent-contrast: #ffffff;
+  --color-surface: #f0f0f0;
+  --color-surface-raised: #ffffff;
+  --color-surface-tint: #e8edf7;
+  --color-ink: #333333;
+  --color-ink-soft: #666666;
+  --color-border: #dddddd;
+  --color-backdrop-strong: rgba(240, 240, 240, 0.98);
+  --font-display: Arial, Helvetica, sans-serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-marker: Arial, Helvetica, sans-serif;
+  --font-weight-display: 700;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-pill: 0;
+  --shadow-raised: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  --accent-hover: #002060;
+}
+body.before-mode::after { display: none; }
+body.before-mode .heading, body.before-mode .usp__title, body.before-mode .services__title, body.before-mode .pricing__name, body.before-mode .portfolio__title, body.before-mode .page-heading__title, body.before-mode .nav__link, body.before-mode .footer__link, body.before-mode .nav__logo-text, body.before-mode .ahero__headline, body.before-mode .contact__field, body.before-mode .btn { text-transform: none; letter-spacing: normal; }
+body.before-mode .heading--md::before { display: none; }
+body.before-mode .ahero__headline { font-size: 2.5rem; color: #003087; }
+body.before-mode .ahero__bg { display: none; }
+body.before-mode .ahero { min-height: auto; background: #ffffff; border-bottom: 1px solid #dddddd; }
+body.before-mode .ahero__ctas .btn, body.before-mode .btn { padding: 1rem 2.5rem; font-size: 1rem; background: #003087; color: #ffffff; border: 2px solid #003087; box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3); border-radius: 0; animation: none; transform: none; }
+body.before-mode .btn:hover { background: #002060; }
+body.before-mode .block--serviceCards .section::after, body.before-mode .block--portfolioTeaser .section::after { display: none; }
+body.before-mode .block--serviceCards .section, body.before-mode .block--portfolioTeaser .section { padding-bottom: var(--section-space); }
+body.before-mode .services__card { border: 1px solid #dddddd; box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); }
+body.before-mode .portfolio__card, body.before-mode .pricing__card { border: 1px solid #dddddd; box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); transform: none; }
+body.before-mode .portfolio__image { filter: none; }
+body.before-mode .pricing__features li::before { content: "\2713"; }
+body.before-mode .cta--strip .cta__inner { transform: none; background: #003087; color: #ffffff; }
+body.before-mode .cta--strip .cta__inner .btn--primary { background: #ffffff; color: #003087; }
+body.before-mode .nav { background: #ffffff; border-bottom: 1px solid #dddddd; }
+body.before-mode .nav__link::after { display: none; }
+body.before-mode .footer__line { display: none; }
+body.before-mode .page-heading { background: #ffffff; }
+/* the controls that get you back keep their real styling */
+body.before-mode .toggle-pill { background: #2ecc40; color: #0a0a0a; font-family: Impact, sans-serif; letter-spacing: 0.1em; border-radius: 999px; }
+body.before-mode .ahero__toggle { background: transparent; color: #003087; border: 2px dashed #003087; box-shadow: none; }

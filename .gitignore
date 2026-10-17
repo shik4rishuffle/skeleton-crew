@@ -1,10 +1,15 @@
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
 .DS_Store
-.orchestrator-events.ndjson
-*.png
-*.zip
-.agent/
-.claude/
-payload/node_modules/
-payload/.env
-payload/.next/
-payload/tsconfig.tsbuildinfo
+.env
+.env.*
+!.env.example
+
+# TinaCMS generated
+public/admin/
+tina/__generated__/
+
+# Payload app keeps its own ignores under payload/

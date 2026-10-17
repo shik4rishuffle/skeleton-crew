@@ -1,0 +1,36 @@
+{
+  "title": "Contact",
+  "seo": {
+    "metaDescription": "Get in touch with Skeleton Crew for bespoke web design and AI consulting."
+  },
+  "blocks": [
+    {
+      "_template": "pageHeading",
+      "heading": "Let's talk.",
+      "align": "left"
+    },
+    {
+      "_template": "contactSection",
+      "anchor": "form",
+      "topicLabel": "What do you need?",
+      "topics": [
+        {
+          "label": "New website"
+        },
+        {
+          "label": "AI consulting"
+        },
+        {
+          "label": "Both"
+        },
+        {
+          "label": "Not sure yet"
+        }
+      ],
+      "askBusiness": true,
+      "submitLabel": "Send",
+      "successMessage": "Thanks. We read everything and reply within two working days.",
+      "showDetails": true
+    }
+  ]
+}

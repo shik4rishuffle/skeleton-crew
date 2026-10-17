@@ -1,0 +1,48 @@
+{
+  "site": {
+    "name": "Skeleton Crew",
+    "tagline": "Bespoke web design and AI consulting for small businesses that refuse to settle.",
+    "logo": "/assets/logo.svg",
+    "defaultDescription": "Skeleton Crew - bespoke web design and AI consulting for small UK businesses"
+  },
+  "nav": {
+    "links": [
+      {
+        "label": "Work",
+        "url": "/work"
+      },
+      {
+        "label": "Services",
+        "url": "/services"
+      },
+      {
+        "label": "Contact",
+        "url": "/contact"
+      }
+    ]
+  },
+  "footer": {
+    "about": "Bespoke web design and AI consulting for small businesses that refuse to settle.",
+    "links": [
+      {
+        "label": "Work",
+        "url": "/work"
+      },
+      {
+        "label": "Services",
+        "url": "/services"
+      },
+      {
+        "label": "Contact",
+        "url": "/contact"
+      }
+    ],
+    "copyright": "Skeleton Crew"
+  },
+  "contact": {
+    "email": "f0xy_shambles@proton.me",
+    "formEndpoint": "https://api.web3forms.com/submit",
+    "formAccessKey": "bb149c6c-9a9e-4887-b571-83f82b0d554a"
+  },
+  "social": []
+}

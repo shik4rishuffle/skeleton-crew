@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500">
+<title>Skeleton Crew logo</title>
+<!-- Skeleton Character - Skull and Upper Torso -->
+<g fill="none" stroke="#f5f5f5" stroke-linecap="round" stroke-linejoin="round">
+<!-- Cranium outline - slightly wider than anatomical, flat top, rounded -->
+<path d="M228 56 C228 30 248 10 270 6 C282 3 294 2 300 2 C306 2 318 3 330 6 C352 10 372 30 372 56 L372 98 C372 108 368 120 360 130 C354 138 344 146 336 150 L336 160 C336 168 328 176 318 178 C312 180 306 182 300 182 C294 182 288 180 282 178 C272 176 264 168 264 160 L264 150 C256 146 246 138 240 130 C232 120 228 108 228 98 Z" stroke-width="6"/>
+<!-- Left eye socket -->
+<ellipse cx="270" cy="72" rx="21" ry="23" stroke-width="5"/>
+<!-- Right eye socket -->
+<ellipse cx="330" cy="72" rx="21" ry="23" stroke-width="5"/>
+<!-- Neon green eye dot - signature detail -->
+<circle cx="270" cy="72" r="8" fill="#00FF41" stroke="none"/>
+<!-- Nose - inverted triangle -->
+<path d="M295 108 L300 118 L305 108" stroke-width="3.5"/>
+<!-- Teeth - wide grin with blocky teeth -->
+<path d="M268 142 L332 142" stroke-width="2.5"/>
+<path d="M268 142 L268 156" stroke-width="3"/>
+<path d="M280 142 L280 158" stroke-width="3"/>
+<path d="M292 142 L292 156" stroke-width="3"/>
+<path d="M304 142 L304 158" stroke-width="3"/>
+<path d="M316 142 L316 156" stroke-width="3"/>
+<path d="M328 142 L328 154" stroke-width="3"/>
+<!-- Grin curve -->
+<path d="M266 154 C272 162 284 168 300 168 C316 168 328 162 334 154" stroke-width="3"/>
+<!-- Collar bones -->
+<path d="M264 196 L300 210" stroke-width="5"/>
+<path d="M336 196 L300 210" stroke-width="5"/>
+<!-- Ribs - curved, stylised -->
+<path d="M260 226 C272 240 286 244 300 244 C314 244 328 240 340 226" stroke-width="4.5"/>
+<path d="M266 248 C276 260 288 264 300 264 C312 264 324 260 334 248" stroke-width="4"/>
+<path d="M272 268 C280 278 290 282 300 282 C310 282 320 278 328 268" stroke-width="3.5"/>
+<!-- Sternum -->
+<path d="M300 210 L300 282" stroke-width="3"/>
+</g>
+<!-- SKELETON - hand-painted chunky letterforms as paths -->
+<g fill="#f5f5f5">
+<!-- S -->
+<path d="M68 332 Q66 322 78 316 Q90 310 102 316 Q114 322 112 334 Q110 342 98 346 Q84 352 78 358 Q72 366 80 376 Q88 384 100 380 L104 370 Q94 374 86 370 Q78 364 84 356 Q90 348 102 344 Q116 338 116 326 Q116 314 104 308 Q90 302 76 308 Q62 316 62 330 Z"/>
+<!-- K -->
+<path d="M126 308 L126 384 L140 384 L140 354 L160 384 L178 384 L152 350 L176 308 L158 308 L140 342 L140 308 Z"/>
+<!-- E -->
+<path d="M186 308 L186 384 L224 384 L222 372 L200 372 L200 352 L218 352 L218 340 L200 340 L200 320 L222 320 L224 308 Z"/>
+<!-- L -->
+<path d="M232 308 L232 384 L268 384 L268 372 L246 372 L246 308 Z"/>
+<!-- E -->
+<path d="M276 308 L276 384 L314 384 L312 372 L290 372 L290 352 L308 352 L308 340 L290 340 L290 320 L312 320 L314 308 Z"/>
+<!-- T -->
+<path d="M320 308 L320 322 L338 322 L338 384 L352 384 L352 322 L370 322 L370 308 Z"/>
+<!-- O -->
+<path d="M388 318 Q376 328 376 348 Q376 368 388 378 Q398 386 410 386 Q422 386 432 378 Q444 368 444 348 Q444 328 432 318 Q422 310 410 310 Q398 310 388 318 Z M410 322 Q420 322 426 332 Q430 340 430 348 Q430 356 426 364 Q420 374 410 374 Q400 374 394 364 Q390 356 390 348 Q390 340 394 332 Q400 322 410 322 Z"/>
+<!-- N -->
+<path d="M454 308 L454 384 L468 384 L468 340 L498 384 L514 384 L514 308 L500 308 L500 352 L470 308 Z"/>
+</g>
+<!-- CREW - hand-painted chunky letterforms, centred below SKELETON -->
+<g fill="#f5f5f5">
+<!-- C -->
+<path d="M168 410 Q156 420 154 440 Q152 462 164 474 Q174 482 188 482 Q200 482 210 474 L208 462 Q200 468 190 470 Q180 470 172 462 Q166 452 166 440 Q166 428 172 420 Q180 412 190 412 Q200 412 208 418 L210 406 Q200 398 188 398 Q174 398 168 410 Z"/>
+<!-- R -->
+<path d="M224 400 L224 480 L238 480 L238 448 L248 448 L266 480 L282 480 L262 446 Q274 440 274 426 Q274 412 262 404 Q254 400 244 400 Z M238 412 L246 412 Q256 412 260 420 Q262 424 260 430 Q258 438 248 438 L238 438 Z"/>
+<!-- E -->
+<path d="M292 400 L292 480 L332 480 L330 468 L306 468 L306 446 L326 446 L326 434 L306 434 L306 412 L330 412 L332 400 Z"/>
+<!-- W -->
+<path d="M342 400 L358 480 L372 480 L386 426 L400 480 L414 480 L432 400 L418 400 L406 456 L392 400 L380 400 L366 456 L356 400 Z"/>
+</g>
+</svg>

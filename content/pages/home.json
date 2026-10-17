@@ -1,0 +1,133 @@
+{
+  "title": "Home",
+  "seo": {
+    "metaTitle": "Skeleton Crew - Bespoke Web Design & AI Consulting",
+    "metaDescription": "Skeleton Crew - bespoke web design and AI consulting for small UK businesses"
+  },
+  "blocks": [
+    {
+      "_template": "agencyHero",
+      "heading": "Websites that don't look like everyone else's.",
+      "text": "Bespoke web design and AI consulting for small UK businesses that refuse to settle.",
+      "buttons": [
+        {
+          "label": "See our work",
+          "url": "/work",
+          "variant": "ghost"
+        },
+        {
+          "label": "Get a quote",
+          "url": "/contact",
+          "variant": "ghost"
+        }
+      ],
+      "toggleLabel": "See what everyone else gives you"
+    },
+    {
+      "_template": "serviceCards",
+      "anchor": "what-we-do",
+      "cards": [
+        {
+          "title": "Website Builds",
+          "body": "We build websites that make your competitors nervous. No templates, no page builders, no compromise. Just a site that looks like yours and nobody else's."
+        },
+        {
+          "title": "AI Consulting",
+          "body": "We find the repetitive tasks eating your day and replace them with AI that actually works. No hype, no jargon - just fewer hours wasted on things a machine should be doing."
+        }
+      ]
+    },
+    {
+      "_template": "portfolioTeaser",
+      "anchor": "portfolio",
+      "heading": "Our Work",
+      "maxItems": 3,
+      "more": {
+        "label": "See all work",
+        "url": "/work",
+        "variant": "ghost"
+      }
+    },
+    {
+      "_template": "pricing",
+      "anchor": "pricing",
+      "heading": "What It Costs",
+      "tiers": [
+        {
+          "name": "Starter",
+          "audience": "For businesses getting online for the first time.",
+          "price": "From £499",
+          "features": [
+            {
+              "text": "One-page site that actually looks good"
+            },
+            {
+              "text": "Mobile-ready from day one"
+            },
+            {
+              "text": "Live in two weeks"
+            }
+          ],
+          "featured": false,
+          "ctaLabel": "Get started",
+          "ctaUrl": "/contact"
+        },
+        {
+          "name": "Growth",
+          "audience": "For businesses ready to stand out.",
+          "price": "From £1,499",
+          "features": [
+            {
+              "text": "Multi-page bespoke design"
+            },
+            {
+              "text": "Content managed by you"
+            },
+            {
+              "text": "Built to grow with your business"
+            }
+          ],
+          "featured": true,
+          "ctaLabel": "Get started",
+          "ctaUrl": "/contact"
+        },
+        {
+          "name": "Premium",
+          "audience": "For businesses that want the full package.",
+          "price": "From £3,000",
+          "features": [
+            {
+              "text": "Everything in Growth, plus"
+            },
+            {
+              "text": "Advanced features and integrations"
+            },
+            {
+              "text": "Priority support"
+            }
+          ],
+          "featured": false,
+          "ctaLabel": "Get started",
+          "ctaUrl": "/contact"
+        }
+      ],
+      "more": {
+        "label": "See all services",
+        "url": "/services",
+        "variant": "ghost"
+      }
+    },
+    {
+      "_template": "cta",
+      "style": "strip",
+      "heading": "Your competitors have a website. Do you?",
+      "buttons": [
+        {
+          "label": "Let's talk",
+          "url": "/contact",
+          "variant": "primary"
+        }
+      ]
+    }
+  ]
+}

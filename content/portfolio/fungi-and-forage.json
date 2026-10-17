@@ -1,0 +1,8 @@
+{
+  "name": "Fungi & Forage",
+  "description": "A bespoke website for a small mushroom growing business in the UK.",
+  "url": "https://fungi-and-forage.example.co.uk",
+  "accent": "#2ECC40",
+  "featured": true,
+  "sortOrder": 1
+}

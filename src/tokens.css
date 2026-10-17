@@ -1,0 +1,29 @@
+/* Skeleton Crew's values for the library token names. The theirs/ours toggle overrides these in before.css. */
+:root {
+  --color-primary: #f5f5f5;
+  --color-primary-contrast: #0a0a0a;
+  --color-accent: #2ecc40;
+  --color-accent-contrast: #0a0a0a;
+  --color-surface: #0a0a0a;
+  --color-surface-raised: #111111;
+  --color-surface-tint: #0d1a0f;
+  --color-ink: #f5f5f5;
+  --color-ink-soft: #888888;
+  --color-border: #222222;
+  --color-backdrop-strong: rgba(10, 10, 10, 0.98);
+  --font-display: var(--font-bebas), Impact, sans-serif;
+  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+  --font-marker: var(--font-permanent-marker), cursive;
+  --font-weight-display: 400;
+  --text-base: 1rem;
+  --leading-body: 1.6;
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  --radius-pill: 4px;
+  --shadow-raised: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --container-max: 1200px;
+  --gutter: clamp(1.5rem, 4vw, 3rem);
+  --section-space: clamp(3rem, 5vw, 5rem);
+  --accent-hover: #3ddb4f;
+}

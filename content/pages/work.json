@@ -1,0 +1,17 @@
+{
+  "title": "Our Work",
+  "seo": {
+    "metaDescription": "See what Skeleton Crew has built for small businesses across the UK."
+  },
+  "blocks": [
+    {
+      "_template": "pageHeading",
+      "heading": "Our Work",
+      "subheading": "Real sites for real businesses. No templates, no compromise.",
+      "align": "left"
+    },
+    {
+      "_template": "portfolioGrid"
+    }
+  ]
+}
