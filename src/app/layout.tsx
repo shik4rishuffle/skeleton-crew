@@ -3,6 +3,7 @@ import { Bebas_Neue, DM_Sans, Permanent_Marker } from "next/font/google";
 import "@skeleton-crew/blocks/tokens.css";
 import "../tokens.css";
 import "@skeleton-crew/blocks/blocks.css";
+import { RevealScript } from "@skeleton-crew/blocks";
 import "./globals.css";
 import "./before.css";
 
@@ -22,6 +23,7 @@ export const viewport: Viewport = { themeColor: "#0a0a0a" };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${marker.variable} ${bebas.variable} ${dmSans.variable}`}>
+      <head><RevealScript /></head>
       <body>{children}</body>
     </html>
   );
